@@ -1,0 +1,54 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Source/Actors/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Source/Resources/new_tileset.tres" type="TileSet" id=2]
+[ext_resource path="res://Source/Solids/Water.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Source/Solids/wall.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Source/Engine/Camera.tscn" type="PackedScene" id=5]
+
+[node name="Level02" type="Node2D"]
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 16, 16 )
+format = 1
+tile_data = PoolIntArray( 0, 0, 0, 29, 0, 0, 65536, 0, 65536, 65565, 0, 65536, 131072, 0, 65536, 131101, 0, 65536, 196608, 0, 65536, 196637, 0, 65536, 262144, 0, 65536, 262173, 0, 65536, 327680, 0, 65536, 327709, 0, 65536, 393216, 0, 65536, 393245, 0, 65536, 458752, 0, 65536, 458781, 0, 65536, 524288, 0, 65536, 524317, 0, 65536, 589824, 0, 65536, 589853, 0, 65536, 655360, 0, 65536, 655389, 0, 65536, 720896, 0, 65536, 720925, 0, 65536, 786432, 0, 65536, 786461, 0, 65536, 851968, 0, 65536, 851997, 0, 65536, 917504, 0, 65536, 917533, 0, 65536, 983040, 0, 65536, 983069, 0, 65536, 1048576, 0, 131073, 1048577, 0, 196610, 1048578, 0, 196610, 1048579, 0, 196610, 1048580, 0, 196610, 1048581, 0, 196610, 1048582, 0, 196610, 1048583, 0, 196610, 1048584, 0, 196610, 1048585, 0, 196610, 1048586, 0, 196610, 1048587, 0, 196610, 1048588, 0, 196610, 1048589, 0, 196610, 1048590, 0, 196610, 1048591, 0, 196610, 1048592, 0, 196610, 1048593, 0, 196610, 1048594, 0, 196610, 1048595, 0, 196610, 1048596, 0, 196610, 1048597, 0, 196610, 1048598, 0, 196610, 1048599, 0, 196610, 1048600, 0, 196610, 1048601, 0, 196610, 1048602, 0, 196610, 1048603, 0, 196610, 1048604, 0, 196610, 1048605, 0, 131075 )
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 56, 32 )
+
+[node name="Walls" type="Node2D" parent="."]
+
+[node name="wall" parent="Walls" instance=ExtResource( 4 )]
+
+[node name="Hitbox" parent="Walls/wall" index="0"]
+pixels = "16 pixel"
+width = 1
+
+[node name="wall2" parent="Walls" instance=ExtResource( 4 )]
+position = Vector2( 464, 0 )
+
+[node name="Hitbox" parent="Walls/wall2" index="0"]
+pixels = "16 pixel"
+width = 1
+
+[node name="wall3" parent="Walls" instance=ExtResource( 4 )]
+position = Vector2( 0, 256 )
+
+[node name="Hitbox" parent="Walls/wall3" index="0"]
+pixels = "16 pixel"
+width = 30
+height = 1
+
+[node name="Springs" type="Node" parent="."]
+
+[node name="Spikes" type="Node" parent="."]
+
+[node name="Water" parent="." instance=ExtResource( 3 )]
+position = Vector2( 0, 272 )
+
+[node name="Camera" parent="." instance=ExtResource( 5 )]
+
+[editable path="Walls/wall"]
+[editable path="Walls/wall2"]
+[editable path="Walls/wall3"]

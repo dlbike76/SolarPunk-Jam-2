@@ -1,0 +1,124 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://Source/Actors/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Source/Resources/Ground_tileset.tres" type="TileSet" id=2]
+[ext_resource path="res://Assets/Sprites/background.png" type="Texture" id=3]
+[ext_resource path="res://Source/Solids/walls/wall.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Source/Engine/Camera.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Source/Solids/Springs/Spring_y.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Source/Solids/Ladders/Ladder.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Source/Resources/ladder_tileset.tres" type="TileSet" id=8]
+[ext_resource path="res://Source/Solids/Interaction_Objects/Vine_Trigger.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Source/Resources/vine_tileset.tres" type="TileSet" id=10]
+[ext_resource path="res://Source/Solids/Springs/Spring_x_r.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Source/Solids/Springs/Spring_x_l.tscn" type="PackedScene" id=12]
+
+[node name="Level02" type="Node2D"]
+
+[node name="LaddersTiles" type="TileMap" parent="."]
+position = Vector2( 0, 4 )
+tile_set = ExtResource( 8 )
+cell_size = Vector2( 32, 18 )
+cell_quadrant_size = 18
+format = 1
+tile_data = PoolIntArray( 262152, 0, 0, 327688, 0, 65536, 393224, 0, 65536, 458760, 0, 65536, 524296, 0, 65536, 589832, 0, 65536, 655368, 0, 65536, 720904, 0, 65536, 786440, 0, 65536, 851976, 0, 131072 )
+
+[node name="Ground" type="TileMap" parent="."]
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 16, 16 )
+format = 1
+tile_data = PoolIntArray( 0, 1, 0, 29, 1, 0, 65536, 1, 65536, 65565, 1, 65536, 131072, 1, 65536, 131101, 1, 65536, 196608, 1, 65536, 196637, 1, 65536, 262144, 1, 65536, 262173, 1, 65536, 327680, 1, 65536, 327703, 1, 196609, 327704, 1, 196610, 327705, 1, 196610, 327706, 1, 196610, 327707, 1, 196610, 327708, 1, 196610, 327709, 1, 65539, 393216, 1, 65536, 393245, 1, 65536, 458752, 1, 65536, 458781, 1, 65536, 524288, 1, 65536, 524317, 1, 65536, 589824, 1, 65536, 589853, 1, 65536, 655360, 1, 65537, 655361, 1, 196610, 655362, 1, 196610, 655363, 1, 196610, 655364, 1, 196610, 655365, 1, 196610, 655366, 1, 196610, 655367, 1, 196611, 655389, 1, 65536, 720896, 1, 65536, 720925, 1, 65536, 786432, 1, 65536, 786461, 1, 65536, 851968, 1, 65536, 851997, 1, 65536, 917504, 1, 65536, 917533, 1, 65536, 983040, 1, 65536, 983069, 1, 65536, 1048576, 1, 131073, 1048577, 1, 196610, 1048578, 1, 196610, 1048579, 1, 196610, 1048580, 1, 196610, 1048581, 1, 196610, 1048582, 1, 196610, 1048583, 1, 196610, 1048584, 1, 196610, 1048585, 1, 196610, 1048586, 1, 196610, 1048587, 1, 196610, 1048588, 1, 196610, 1048589, 1, 196610, 1048590, 1, 196610, 1048591, 1, 196610, 1048592, 1, 196610, 1048593, 1, 196610, 1048594, 1, 196610, 1048595, 1, 196610, 1048596, 1, 196610, 1048597, 1, 196610, 1048598, 1, 196610, 1048599, 1, 196610, 1048600, 1, 196610, 1048601, 1, 196610, 1048602, 1, 196610, 1048603, 1, 196610, 1048604, 1, 196610, 1048605, 1, 131075 )
+
+[node name="Vine" type="TileMap" parent="."]
+tile_set = ExtResource( 10 )
+cell_size = Vector2( 32, 32 )
+format = 1
+tile_data = PoolIntArray( 65546, 0, 0, 131082, 0, 65536, 196618, 0, 65536, 262154, 0, 65536, 327690, 0, 65536, 393226, 0, 65536, 458762, 0, 131072 )
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 400, 40 )
+
+[node name="Walls" type="Node2D" parent="."]
+visible = false
+
+[node name="wall" parent="Walls" instance=ExtResource( 4 )]
+
+[node name="Hitbox" parent="Walls/wall" index="0"]
+pixels = "16 pixel"
+width = 1
+
+[node name="wall2" parent="Walls" instance=ExtResource( 4 )]
+position = Vector2( 464, 0 )
+
+[node name="Hitbox" parent="Walls/wall2" index="0"]
+pixels = "16 pixel"
+width = 1
+
+[node name="wall3" parent="Walls" instance=ExtResource( 4 )]
+position = Vector2( 0, 256 )
+
+[node name="Hitbox" parent="Walls/wall3" index="0"]
+pixels = "16 pixel"
+width = 30
+height = 1
+
+[node name="wall4" parent="Walls" instance=ExtResource( 4 )]
+position = Vector2( 16, 160 )
+
+[node name="Hitbox" parent="Walls/wall4" index="0"]
+pixels = "16 pixel"
+width = 7
+height = 1
+
+[node name="wall5" parent="Walls" instance=ExtResource( 4 )]
+position = Vector2( 368, 80 )
+
+[node name="Hitbox" parent="Walls/wall5" index="0"]
+pixels = "16 pixel"
+width = 6
+height = 1
+
+[node name="Springs" type="Node" parent="."]
+
+[node name="Spring_y" parent="Springs" instance=ExtResource( 6 )]
+position = Vector2( 192, 248 )
+
+[node name="Spring_x_l" parent="Springs" instance=ExtResource( 12 )]
+position = Vector2( 456, 224 )
+
+[node name="Spring_x_r" parent="Springs" instance=ExtResource( 11 )]
+position = Vector2( 24, 112 )
+
+[node name="Ladders" type="Node" parent="."]
+
+[node name="Ladder" parent="Ladders" instance=ExtResource( 7 )]
+position = Vector2( 264, 78.5 )
+
+[node name="Hitbox" parent="Ladders/Ladder" index="0"]
+visible = false
+position = Vector2( 6.2363, 0 )
+pixels = "1 pixel"
+width = 4
+height = 180
+
+[node name="Objects" type="Node" parent="."]
+
+[node name="Vine_Trigger" parent="Objects" instance=ExtResource( 9 )]
+position = Vector2( 336, 208 )
+
+[node name="Camera" parent="." instance=ExtResource( 5 )]
+
+[node name="Background" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="Sprite" type="Sprite" parent="Background"]
+position = Vector2( 240, 136 )
+scale = Vector2( 1.66667, 1.0625 )
+texture = ExtResource( 3 )
+
+[editable path="Walls/wall"]
+[editable path="Walls/wall2"]
+[editable path="Walls/wall3"]
+[editable path="Walls/wall4"]
+[editable path="Walls/wall5"]
+[editable path="Ladders/Ladder"]
