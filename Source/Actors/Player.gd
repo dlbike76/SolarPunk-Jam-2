@@ -90,6 +90,12 @@ func coll_spring_x_r():
 func coll_spring_x_l():
 	velocity.x = -500
 
+func is_riding(solid, offset):
+	return !hitbox.intersects(solid.hitbox, Vector2.ZERO) && hitbox.intersects(solid.hitbox, offset)
+
+func squish():
+	print ("squished")
+
 
 
 

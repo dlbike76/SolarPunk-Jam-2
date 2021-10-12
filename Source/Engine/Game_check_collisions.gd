@@ -14,6 +14,17 @@ func check_player_collision(entity, offset:Vector2) -> bool:
 			return true
 	return false
 
+func get_all_actors():
+	return get_tree().get_nodes_in_group("actors")
+
+func get_all_riding_actors(solid):
+	var riders : Array
+	var actors = get_tree().get_nodes_in_group("actors")
+	for actor in actors:
+		if actor.is_riding(solid, Vector2.DOWN):
+			riders.append(actor)
+	return riders
+
 func check_springs_y_collision(entity, offset:Vector2) -> bool: 
 	var springs := get_tree().get_nodes_in_group("springs_y")
 	for spring in springs:

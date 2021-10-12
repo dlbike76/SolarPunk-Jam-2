@@ -17,11 +17,23 @@ _global_script_classes=[ {
 "base": "Node2D",
 "class": "Interaction_Object",
 "language": "GDScript",
-"path": "res://Source/Solids/Interaction_Objects/Interaction_Object.gd"
+"path": "res://Source/Non-Solids/Interaction_Objects/Interaction_Object.gd"
+}, {
+"base": "Wall",
+"class": "Solid",
+"language": "GDScript",
+"path": "res://Source/Solids/Solids.gd"
+}, {
+"base": "Node2D",
+"class": "Wall",
+"language": "GDScript",
+"path": "res://Source/Solids/wall.gd"
 } ]
 _global_script_class_icons={
 "Actor": "",
-"Interaction_Object": ""
+"Interaction_Object": "",
+"Solid": "",
+"Wall": ""
 }
 
 [application]
@@ -31,7 +43,7 @@ config/icon="res://icon.png"
 
 [autoload]
 
-Game="*res://Source/Engine/Check_collisions.gd"
+Game="*res://Source/Engine/Game_check_collisions.gd"
 
 [display]
 

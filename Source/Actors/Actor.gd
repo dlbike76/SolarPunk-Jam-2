@@ -4,6 +4,9 @@ class_name Actor
 var remainder := Vector2.ZERO
 var velocity := Vector2.ZERO
 
+func _ready() -> void:
+	add_to_group("actors")
+
 func move_x(amount, callback) -> void:
 	remainder.x += amount
 	var move_x := round(remainder.x)

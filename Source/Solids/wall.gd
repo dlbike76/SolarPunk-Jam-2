@@ -1,4 +1,5 @@
 extends Node2D
+class_name Wall
 
 onready var hitbox := $Hitbox
 

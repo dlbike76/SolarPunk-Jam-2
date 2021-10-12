@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Assets/Sprites/Spring-Sheet.png" type="Texture" id=1]
 [ext_resource path="res://Source/Engine/Hitbox.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Source/Solids/Springs/Spring_x_r.gd" type="Script" id=3]
+[ext_resource path="res://Source/Non-Solids/Springs/Spring_y.gd" type="Script" id=3]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 1 )
@@ -45,16 +45,16 @@ animations = [ {
 "speed": 9.0
 } ]
 
-[node name="Spring_x_r" type="Node2D"]
+[node name="Spring_y" type="Node2D"]
 script = ExtResource( 3 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-rotation = 1.5708
 frames = SubResource( 8 )
 animation = "idle"
 playing = true
 
 [node name="Hitbox" parent="." instance=ExtResource( 2 )]
-x = -6
-y = -8
-width = 2
+visible = false
+x = -8
+y = 6
+height = 2
