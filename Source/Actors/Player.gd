@@ -134,7 +134,7 @@ func _on_GameMenu_quit_game_request():
 
 func new_game():
 	infobar.set_power( 10.0)
-	infobar.set_energy_total( 100.0)
+	infobar.set_mental_energy( 100.0)
 	get_tree().paused = false
 
 
