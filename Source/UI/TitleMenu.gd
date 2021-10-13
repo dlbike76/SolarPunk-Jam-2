@@ -4,7 +4,7 @@ onready var title_menu = $Menu
 
 signal options_menu_request(caller)
 signal quit_game_request
-
+signal new_game_request
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -29,3 +29,7 @@ func _on_Options_pressed():
 
 func _on_QuitGame_pressed():
 	emit_signal("quit_game_request")
+
+
+func _on_NewGame_pressed():
+	emit_signal("new_game_request")

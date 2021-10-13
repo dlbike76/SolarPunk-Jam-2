@@ -163,6 +163,6 @@ func _on_TitleMenu_quit_game_request():
 	quit_game()
 
 
-func _on_TitleMenu_NewGame_pressed():
+func _on_TitleMenu_new_game_request():
 	get_parent().get_node("UI").get_node("TitleMenu").hide()
 	new_game()
