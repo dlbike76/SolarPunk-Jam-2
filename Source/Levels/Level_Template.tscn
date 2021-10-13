@@ -14,9 +14,9 @@
 [ext_resource path="res://Source/Non-Solids/Springs/Spring_x_l.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Source/Solids/MovingPlatform.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Source/UI/GameMenu.tscn" type="PackedScene" id=14]
-[ext_resource path="res://Source/UI/UI_InfoBar.gd" type="Script" id=15]
-[ext_resource path="res://Assets/Sprites/Crude energy icon.png" type="Texture" id=16]
-[ext_resource path="res://Assets/Sprites/Crude total energy icon.png" type="Texture" id=17]
+[ext_resource path="res://Source/UI/InfoBar.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Source/UI/GameOverMenu.tscn" type="PackedScene" id=16]
+[ext_resource path="res://Source/Non-Solids/Charger.tscn" type="PackedScene" id=17]
 [ext_resource path="res://Source/Non-Solids/EnergyMachine.tscn" type="PackedScene" id=18]
 [ext_resource path="res://Source/Non-Solids/Door.tscn" type="PackedScene" id=19]
 [ext_resource path="res://Source/UI/TitleMenu.tscn" type="PackedScene" id=20]
@@ -159,110 +159,28 @@ texture = ExtResource( 3 )
 [node name="GameMenu" parent="UI" instance=ExtResource( 14 )]
 visible = false
 
-[node name="InfoBar" type="ColorRect" parent="UI"]
-margin_left = 27.0
-margin_top = 3.0
-margin_right = 120.0
-margin_bottom = 24.0
-color = Color( 0.0862745, 0.305882, 0.498039, 1 )
-script = ExtResource( 15 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="InfoBar" parent="UI" instance=ExtResource( 15 )]
+margin_left = 24.0
+margin_top = 8.0
+margin_right = 24.0
+margin_bottom = 8.0
 
-[node name="Energy_leak" type="ColorRect" parent="UI/InfoBar"]
-margin_left = 1.0
-margin_top = 2.0
-margin_right = 41.0
-margin_bottom = 19.0
-color = Color( 0.0862745, 0.305882, 0.498039, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="GameOverMenu" parent="UI" instance=ExtResource( 16 )]
 
-[node name="TextureRect" type="TextureRect" parent="UI/InfoBar/Energy_leak"]
-margin_left = 3.0
-margin_top = 0.229538
-margin_right = 22.0
-margin_bottom = 16.2295
-texture = ExtResource( 16 )
-expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Label" type="Label" parent="UI/InfoBar/Energy_leak"]
-margin_left = 26.7194
-margin_top = 1.22954
-margin_right = 35.7194
-margin_bottom = 15.2295
-text = "5"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Total_Energy" type="ColorRect" parent="UI/InfoBar"]
-margin_left = 45.8985
-margin_top = 3.40308
-margin_right = 85.8985
-margin_bottom = 20.4031
-color = Color( 0.0862745, 0.305882, 0.498039, 1 )
-
-[node name="TextureRect" type="TextureRect" parent="UI/InfoBar/Total_Energy"]
-margin_left = 3.84184
-margin_top = -1.17353
-margin_right = 22.8418
-margin_bottom = 14.8265
-texture = ExtResource( 17 )
-expand = true
-
-[node name="Label" type="Label" parent="UI/InfoBar/Total_Energy"]
-margin_left = 26.7194
-margin_top = 1.22954
-margin_right = 35.7194
-margin_bottom = 15.2295
-text = "5"
-
-[node name="GameOverMenu" type="ColorRect" parent="UI"]
-pause_mode = 2
-visible = false
-margin_left = 53.0
-margin_top = 40.0
-margin_right = 209.0
-margin_bottom = 109.0
-color = Color( 0.0862745, 0.305882, 0.498039, 1 )
-
-[node name="Label" type="Label" parent="UI/GameOverMenu"]
-margin_left = 12.0
-margin_top = 2.0
-margin_right = 131.0
-margin_bottom = 20.0
-text = "GAME OVER
-Try again?"
-
-[node name="NoButton" type="Button" parent="UI/GameOverMenu"]
-margin_left = 61.0
-margin_top = 42.0
-margin_right = 102.0
-margin_bottom = 62.0
-text = "No"
-
-[node name="YesButton" type="Button" parent="UI/GameOverMenu"]
-margin_left = 5.0
-margin_top = 42.0
-margin_right = 50.0
-margin_bottom = 63.0
-text = "Yes"
+[node name="Charger" parent="." instance=ExtResource( 17 )]
+position = Vector2( 376, 240 )
 
 [node name="TitleMenu" parent="UI" instance=ExtResource( 20 )]
 
 [connection signal="options_menu_request" from="UI/GameMenu" to="Player" method="_on_GameMenu_options_menu_request"]
 [connection signal="quit_game_request" from="UI/GameMenu" to="Player" method="_on_GameMenu_quit_game_request"]
+
 [connection signal="pressed" from="UI/GameOverMenu/NoButton" to="Player" method="_on_NoButton_pressed"]
 [connection signal="pressed" from="UI/GameOverMenu/YesButton" to="Player" method="_on_YesButton_pressed"]
 [connection signal="new_game_request" from="UI/TitleMenu" to="Player" method="_on_TitleMenu_new_game_request"]
 [connection signal="options_menu_request" from="UI/TitleMenu" to="Player" method="_on_TitleMenu_options_menu_request"]
 [connection signal="quit_game_request" from="UI/TitleMenu" to="Player" method="_on_TitleMenu_quit_game_request"]
+
 
 [editable path="Walls/wall"]
 [editable path="Walls/wall2"]

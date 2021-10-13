@@ -1,41 +1,40 @@
 extends ColorRect
 
-#onready var energy_leak_label :Label = get_tree().get_node("UI/InfoBar/Energy_leak/Label")
-#onready var energy_total_label :Label = get_tree().get_node("UI/InfoBar/Total_Energy/Label")
-
-var _energy_leaking setget set_energy_leaking, get_energy_leaking
-var _energy_total setget set_energy_total, get_energy_total
+var _power setget set_power, get_power
+var _mental_energy setget set_mental_energy, get_mental_energy
 
 
-func set_energy_leaking(amt):
-	_energy_leaking = amt
-	$Energy_leak.get_node("Label").text = str(int(_energy_leaking))
-	#energy_leak_label.text = str(_energy_leaking)
+func set_power(amt):
+	_power = amt
+	$Power.get_node("Label").text = str(int(_power))
 
-func get_energy_leaking():
-	return _energy_leaking
+func get_power():
+	return _power
 
-func  set_energy_total(amt):
-	_energy_total = amt
-	$Total_Energy.get_node("Label").text =str(int(_energy_total))
-	#energy_total_label.text = str(_energy_total)
+func  set_mental_energy(amt):
+	_mental_energy = amt
+	$Mental_Energy.get_node("Label").text = str(int(_mental_energy))
 
-func get_energy_total():
-	return _energy_total
+func get_mental_energy():
+	return _mental_energy
 
+func _process(delta: float) -> void:
+	animate_power()
+	animate_mental_energy()
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
+# here with the animate functions, the idea is that depending how high or low is the number (between 0 and 100),
+# of the labels, the icons will be playing diferent animations (they are not really animations, they are static)
+# but label text is a string. I am sure you can convert easily a number in a string to an int number, but i dont know how.
+# if you can tackle it, great! if dont, ill look later into it
+
+func animate_power():
 	pass
+	# same idea as with mental energy
 
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	# We need to make sure that the info bar is always shown at the top of the game window
-#	var global_pos = get_global_rect()
-#	print (global_pos)
-#	var new_position = Vector2(0,0)
-#
-#	set_global_position(new_position)
+func animate_mental_energy():
 	pass
+	# something like:
+	# if mental energy < 10 : play "0"
+	# elif mental energy < 20 : play "1"
+	# ...
+

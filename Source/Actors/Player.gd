@@ -12,15 +12,15 @@ export var acceleration_up_coeficient := 4
 export var friction := 250
 export var gravity := 1000
 export var max_fall_speed := 5000
-export var total_energy := 100.0
-export var energy_leaking := 50.0  # energy leaked per 10 seconds
+export var power := 100.0  # energy leaked per 10 seconds
+export var mental_energy := 0.0
 
-signal interaction
+
 
 func _ready() -> void:
 	add_to_group("players")
-	infobar.set_energy_leaking(energy_leaking)
-	infobar.set_energy_total(total_energy)
+	infobar.set_power(power)
+	infobar.set_mental_energy(mental_energy)
 
 func _unhandled_input(event):
 	if event.is_action_pressed("ui_cancel"):
@@ -35,16 +35,18 @@ func _process(delta: float) -> void:
 	velocity = calculate_velocity(direction_x, direction_y)
 	move_x(velocity.x * delta, funcref(self, "wall_collision_x"))
 	move_y(velocity.y * delta, funcref(self, "wall_collision_y"))
-	if energy_leaking > 0:
-		var energy_leaked = (energy_leaking/30) * delta
-		var new_total = infobar.get_energy_total() - energy_leaked
-		infobar.set_energy_total(new_total)
+	animate()
 	
-	if infobar.get_energy_total() <= 0 :
+	if power > 0:
+		var power_used = (power/30) * delta
+		var new_total = infobar.get_power() - power_used
+		infobar.set_power(new_total)
+	
+	if infobar.get_power() <= 0 :
 		get_tree().paused = true
 		get_parent().get_node("UI/GameOverMenu").show()
 
-	animate()
+
 
 func check_collisions_with_non_walls ():
 	if Game.check_springs_y_collision(self,Vector2(0,1)) : coll_spring_y()
@@ -131,7 +133,7 @@ func _on_GameMenu_quit_game_request():
 	
 
 func new_game():
-	infobar.set_energy_leaking( 10.0)
+	infobar.set_power( 10.0)
 	infobar.set_energy_total( 100.0)
 	get_tree().paused = false
 
