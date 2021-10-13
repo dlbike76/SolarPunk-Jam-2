@@ -12,8 +12,8 @@ export var acceleration_up_coeficient := 4
 export var friction := 250
 export var gravity := 1000
 export var max_fall_speed := 5000
-export var total_energy := 100
-export var energy_leaking := 10  # energy leaked per 10 seconds
+export var total_energy := 100.0
+export var energy_leaking := 50.0  # energy leaked per 10 seconds
 
 signal interaction
 
@@ -36,7 +36,7 @@ func _process(delta: float) -> void:
 	move_x(velocity.x * delta, funcref(self, "wall_collision_x"))
 	move_y(velocity.y * delta, funcref(self, "wall_collision_y"))
 	if energy_leaking > 0:
-		var energy_leaked = (energy_leaking/10) * delta
+		var energy_leaked = (energy_leaking/30) * delta
 		var new_total = infobar.get_energy_total() - energy_leaked
 		infobar.set_energy_total(new_total)
 	
