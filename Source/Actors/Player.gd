@@ -24,7 +24,7 @@ func _ready() -> void:
 
 func _unhandled_input(event):
 	if event.is_action_pressed("ui_cancel"):
-		
+		get_tree().paused = true
 		get_parent().get_node("UI/GameMenu").show()
 
 
@@ -133,8 +133,8 @@ func _on_GameMenu_quit_game_request():
 	
 
 func new_game():
-	infobar.set_power( 10.0)
-	infobar.set_energy_total( 100.0)
+	infobar.set_power( power )
+	infobar.set_mental_energy( mental_energy)
 	get_tree().paused = false
 
 
@@ -150,3 +150,16 @@ func _on_YesButton_pressed():
 	get_parent().get_node("UI/GameOverMenu").hide()
 	new_game()
 	
+
+func _on_TitleMenu_options_menu_request(caller):
+	pass # Replace with function body.
+
+
+func _on_TitleMenu_quit_game_request():
+	quit_game()
+
+
+func _on_TitleMenu_new_game_request():
+	get_parent().get_node("UI").get_node("TitleMenu").hide()
+	new_game()
+
