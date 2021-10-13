@@ -2,6 +2,8 @@ extends Actor
 
 onready var animated_sprite := $AnimatedSprite
 onready var hitbox := $Hitbox
+onready var infobar := get_parent().get_node("UI/InfoBar")
+
 
 export var max_speed := 100
 export var acceleration := 120
@@ -10,15 +12,19 @@ export var acceleration_up_coeficient := 4
 export var friction := 250
 export var gravity := 1000
 export var max_fall_speed := 5000
+export var total_energy := 100.0
+export var energy_leaking := 50.0  # energy leaked per 10 seconds
 
 signal interaction
 
 func _ready() -> void:
 	add_to_group("players")
+	infobar.set_energy_leaking(energy_leaking)
+	infobar.set_energy_total(total_energy)
 
 func _unhandled_input(event):
 	if event.is_action_pressed("ui_cancel"):
-		get_parent().get_node("UI").show()
+		
 		get_parent().get_node("UI/GameMenu").show()
 
 
@@ -29,6 +35,15 @@ func _process(delta: float) -> void:
 	velocity = calculate_velocity(direction_x, direction_y)
 	move_x(velocity.x * delta, funcref(self, "wall_collision_x"))
 	move_y(velocity.y * delta, funcref(self, "wall_collision_y"))
+	if energy_leaking > 0:
+		var energy_leaked = (energy_leaking/30) * delta
+		var new_total = infobar.get_energy_total() - energy_leaked
+		infobar.set_energy_total(new_total)
+	
+	if infobar.get_energy_total() <= 0 :
+		get_tree().paused = true
+		get_parent().get_node("UI/GameOverMenu").show()
+
 	animate()
 
 func check_collisions_with_non_walls ():
@@ -104,6 +119,7 @@ func squish():
 
 
 
+
 func _on_GameMenu_options_menu_request(caller):
 	# add the options menu scene to the scene tree and show it
 	pass
@@ -114,5 +130,21 @@ func _on_GameMenu_quit_game_request():
 	quit_game()
 	
 
+func new_game():
+	infobar.set_energy_leaking( 10.0)
+	infobar.set_energy_total( 100.0)
+	get_tree().paused = false
+
+
 func quit_game() -> void :
 	get_tree().quit()
+
+
+func _on_NoButton_pressed():
+	quit_game()
+
+
+func _on_YesButton_pressed():
+	get_parent().get_node("UI/GameOverMenu").hide()
+	new_game()
+	
