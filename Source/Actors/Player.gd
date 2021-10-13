@@ -24,7 +24,7 @@ func _ready() -> void:
 
 func _unhandled_input(event):
 	if event.is_action_pressed("ui_cancel"):
-		
+		get_tree().paused = true
 		get_parent().get_node("UI/GameMenu").show()
 
 

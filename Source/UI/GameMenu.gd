@@ -33,6 +33,7 @@ func _on_QuitGame_pressed():
 
 
 func _on_Continue_pressed():
+	get_tree().paused = false
 	self.hide()
 
 
