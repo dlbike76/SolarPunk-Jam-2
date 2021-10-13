@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Source/Actors/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Source/Resources/Ground_tileset.tres" type="TileSet" id=2]
@@ -6,7 +6,7 @@
 [ext_resource path="res://Source/Solids/wall.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Source/Engine/Camera.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Source/Non-Solids/Springs/Spring_y.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Source/Ladders/Ladder.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Source/Non-Solids/Ladders/Ladder.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Source/Resources/ladder_tileset.tres" type="TileSet" id=8]
 [ext_resource path="res://Source/Non-Solids/Interaction_Objects/Vine_Trigger.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Source/Resources/vine_tileset.tres" type="TileSet" id=10]
@@ -17,6 +17,7 @@
 [ext_resource path="res://Source/UI/UI_InfoBar.gd" type="Script" id=15]
 [ext_resource path="res://Assets/Sprites/Crude energy icon.png" type="Texture" id=16]
 [ext_resource path="res://Assets/Sprites/Crude total energy icon.png" type="Texture" id=17]
+[ext_resource path="res://Source/Non-Solids/EnergyMachine.tscn" type="PackedScene" id=18]
 
 [node name="Level02" type="Node2D"]
 
@@ -110,6 +111,11 @@ height = 180
 
 [node name="Vine_Trigger" parent="Objects" instance=ExtResource( 9 )]
 position = Vector2( 336, 208 )
+
+[node name="Machines" type="Node" parent="."]
+
+[node name="EnergyMachine" parent="Machines" instance=ExtResource( 18 )]
+position = Vector2( 96, 128 )
 
 [node name="MovingPlatforms" type="Node" parent="."]
 
