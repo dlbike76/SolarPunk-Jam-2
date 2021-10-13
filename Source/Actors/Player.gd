@@ -13,24 +13,19 @@ export var friction := 250
 export var gravity := 1000
 export var max_fall_speed := 5000
 export var total_energy := 100.0
-export var energy_leaking := 50.0  # energy leaked per 30 seconds
-
-enum {EASY, NORMAL, HARD, VERY_HARD}
-
+export var energy_leaking := 50.0  # energy leaked per 10 seconds
 
 signal interaction
 
 func _ready() -> void:
 	add_to_group("players")
-	get_parent().get_node("UI").get_node("TitleMenu").show()
-	
 	infobar.set_energy_leaking(energy_leaking)
 	infobar.set_energy_total(total_energy)
 
 func _unhandled_input(event):
 	if event.is_action_pressed("ui_cancel"):
 		
-		get_parent().get_node("UI/GameMenu").get_node("Menu").show()
+		get_parent().get_node("UI/GameMenu").show()
 
 
 func _process(delta: float) -> void:
@@ -40,8 +35,8 @@ func _process(delta: float) -> void:
 	velocity = calculate_velocity(direction_x, direction_y)
 	move_x(velocity.x * delta, funcref(self, "wall_collision_x"))
 	move_y(velocity.y * delta, funcref(self, "wall_collision_y"))
-	if infobar.get_energy_leaking() > 0:
-		var energy_leaked = (infobar.get_energy_leaking() / 30) * delta
+	if energy_leaking > 0:
+		var energy_leaked = (energy_leaking/30) * delta
 		var new_total = infobar.get_energy_total() - energy_leaked
 		infobar.set_energy_total(new_total)
 	
@@ -136,8 +131,8 @@ func _on_GameMenu_quit_game_request():
 	
 
 func new_game():
-	infobar.set_energy_leaking(energy_leaking)
-	infobar.set_energy_total( total_energy)
+	infobar.set_energy_leaking( 10.0)
+	infobar.set_energy_total( 100.0)
 	get_tree().paused = false
 
 
@@ -154,7 +149,6 @@ func _on_YesButton_pressed():
 	new_game()
 	
 
-
 func _on_TitleMenu_options_menu_request(caller):
 	pass # Replace with function body.
 
@@ -166,3 +160,4 @@ func _on_TitleMenu_quit_game_request():
 func _on_TitleMenu_new_game_request():
 	get_parent().get_node("UI").get_node("TitleMenu").hide()
 	new_game()
+
