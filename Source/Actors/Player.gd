@@ -16,6 +16,12 @@ signal interaction
 func _ready() -> void:
 	add_to_group("players")
 
+func _unhandled_input(event):
+	if event.is_action_pressed("ui_cancel"):
+		get_parent().get_node("UI").show()
+		get_parent().get_node("UI/GameMenu").show()
+
+
 func _process(delta: float) -> void:
 	check_collisions_with_non_walls()
 	var direction_x := (Input.get_action_strength("move_right") - Input.get_action_strength("move_left"))
@@ -98,5 +104,15 @@ func squish():
 
 
 
+func _on_GameMenu_options_menu_request(caller):
+	# add the options menu scene to the scene tree and show it
+	pass
 
 
+func _on_GameMenu_quit_game_request():
+	#Call a quit game function in case additional clean-up is needed
+	quit_game()
+	
+
+func quit_game() -> void :
+	get_tree().quit()
