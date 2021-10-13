@@ -1,0 +1,32 @@
+[gd_scene format=2]
+
+[node name="GameOverMenu" type="ColorRect"]
+pause_mode = 2
+visible = false
+margin_left = 53.0
+margin_top = 40.0
+margin_right = 209.0
+margin_bottom = 109.0
+color = Color( 0.0862745, 0.305882, 0.498039, 1 )
+
+[node name="Label" type="Label" parent="."]
+margin_left = 12.0
+margin_top = 2.0
+margin_right = 131.0
+margin_bottom = 20.0
+text = "GAME OVER
+Try again?"
+
+[node name="NoButton" type="Button" parent="."]
+margin_left = 61.0
+margin_top = 42.0
+margin_right = 102.0
+margin_bottom = 62.0
+text = "No"
+
+[node name="YesButton" type="Button" parent="."]
+margin_left = 5.0
+margin_top = 42.0
+margin_right = 50.0
+margin_bottom = 63.0
+text = "Yes"
