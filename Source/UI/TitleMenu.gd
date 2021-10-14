@@ -1,7 +1,7 @@
 extends ColorRect
 
 onready var title_menu = $Menu
-onready var game : PackedScene = preload("res://Source/Levels/Level_Template.tscn")
+onready var game : PackedScene = load("res://Source/Levels/Level_Template.tscn")
 
 signal options_menu_request(caller)
 signal quit_game_request
