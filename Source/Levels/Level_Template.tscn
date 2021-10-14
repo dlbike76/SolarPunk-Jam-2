@@ -107,6 +107,9 @@ position = Vector2( 96, 128 )
 [node name="Door" parent="Objects/Doors" instance=ExtResource( 19 )]
 position = Vector2( 112, 224 )
 
+[node name="AnimatedSprite" parent="Objects/Doors/Door" index="0"]
+frame = 1
+
 [node name="Hitbox" parent="Objects/Doors/Door" index="1"]
 visible = false
 
