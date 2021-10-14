@@ -40,7 +40,7 @@ func _process(delta: float) -> void:
 	animate()
 	
 	if (power > 0) and (broken_machines > 0) :
-		var power_used = (power/30) * delta
+		var power_used = (power/40) * delta
 		var new_total = infobar.get_power() - power_used
 		infobar.set_power(new_total)
 	

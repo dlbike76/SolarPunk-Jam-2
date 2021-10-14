@@ -38,11 +38,6 @@ func _process(delta: float) -> void:
 	animate_power()
 	animate_mental_energy()
 
-# here with the animate functions, the idea is that depending how high or low is the number (between 0 and 100),
-# of the labels, the icons will be playing diferent animations (they are not really animations, they are static)
-# but label text is a string. I am sure you can convert easily a number in a string to an int number, but i dont know how.
-# if you can tackle it, great! if dont, ill look later into it
-
 func animate_power():
 	if _power < 10 :
 		power_sprite.set_animation("0")
@@ -63,7 +58,6 @@ func animate_power():
 	else :
 		power_sprite.set_animation("8")
 	pass
-	# same idea as with mental energy
 
 func animate_mental_energy():
 	if _mental_energy > 90 :
@@ -92,10 +86,5 @@ func animate_mental_energy():
 		mental_energy_sprite.set_animation("1")
 	else:
 		mental_energy_sprite.set_animation("0")
-	
-	pass
-	# something like:
-	# if mental energy < 10 : play "0"
-	# elif mental energy < 20 : play "1"
-	# ...
+
 

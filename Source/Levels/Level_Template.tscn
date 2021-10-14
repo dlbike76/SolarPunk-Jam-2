@@ -119,9 +119,6 @@ position = Vector2( 336, 208 )
 [node name="Door" parent="Doors" instance=ExtResource( 19 )]
 position = Vector2( 112, 224 )
 
-[node name="AnimatedSprite" parent="Doors/Door" index="0"]
-frame = 1
-
 [node name="Hitbox" parent="Doors/Door" index="1"]
 visible = false
 
@@ -170,6 +167,9 @@ margin_left = 24.0
 margin_top = 8.0
 margin_right = 24.0
 margin_bottom = 8.0
+
+[node name="AnimatedSprite" parent="UI/InfoBar/Broken_Machines" index="1"]
+animation = "4"
 
 [node name="TitleMenu" parent="UI" instance=ExtResource( 20 )]
 

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Climbing-Sheet.png-c911d5ab25d4790fb6de2a424d501c06.stex"
+path="res://.import/Count-Sheet.png-21da6a31a5d760a77414ad17f46cd4db.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Climbing-Sheet.png"
-dest_files=[ "res://.import/Climbing-Sheet.png-c911d5ab25d4790fb6de2a424d501c06.stex" ]
+source_file="res://Assets/Sprites/Count-Sheet.png"
+dest_files=[ "res://.import/Count-Sheet.png-21da6a31a5d760a77414ad17f46cd4db.stex" ]
 
 [params]
 
