@@ -1,4 +1,8 @@
+<<<<<<< HEAD
+[gd_scene load_steps=20 format=2]
+=======
 [gd_scene load_steps=23 format=2]
+>>>>>>> 5611ef4de8dbf17937b11b5dbf05fc04faaa7c46
 
 [ext_resource path="res://Source/Actors/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Source/Resources/Ground_tileset.tres" type="TileSet" id=2]
@@ -16,12 +20,18 @@
 [ext_resource path="res://Source/UI/GameMenu.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Source/UI/InfoBar.tscn" type="PackedScene" id=15]
 [ext_resource path="res://Source/UI/GameOverMenu.tscn" type="PackedScene" id=16]
+<<<<<<< HEAD
+[ext_resource path="res://Source/Non-Solids/Charger.tscn" type="PackedScene" id=17]
+[ext_resource path="res://Source/Non-Solids/EnergyMachine.tscn" type="PackedScene" id=18]
+[ext_resource path="res://Source/Non-Solids/Door.tscn" type="PackedScene" id=19]
+=======
 [ext_resource path="res://Source/Non-Solids/Interaction_Objects/Charger.tscn" type="PackedScene" id=17]
 [ext_resource path="res://Source/Non-Solids/Interaction_Objects/EnergyMachine.tscn" type="PackedScene" id=18]
 [ext_resource path="res://Source/Non-Solids/Interaction_Objects/Door.tscn" type="PackedScene" id=19]
 [ext_resource path="res://Source/UI/TitleMenu.tscn" type="PackedScene" id=20]
 [ext_resource path="res://Source/UI/GameInfo.tscn" type="PackedScene" id=21]
 [ext_resource path="res://Source/Non-Solids/Coin.tscn" type="PackedScene" id=22]
+>>>>>>> 5611ef4de8dbf17937b11b5dbf05fc04faaa7c46
 
 [node name="LevelTemplate" type="Node2D"]
 
@@ -141,7 +151,14 @@ position = Vector2( 456, 224 )
 [node name="Spring_x_r" parent="Objects/Springs" instance=ExtResource( 11 )]
 position = Vector2( 24, 112 )
 
+<<<<<<< HEAD
+[node name="AnimatedSprite" parent="Doors/Door" index="0"]
+frame = 1
+
+[node name="Hitbox" parent="Doors/Door" index="1"]
+=======
 [node name="Walls" type="Node2D" parent="Objects"]
+>>>>>>> 5611ef4de8dbf17937b11b5dbf05fc04faaa7c46
 visible = false
 
 [node name="wall" parent="Objects/Walls" instance=ExtResource( 4 )]
@@ -181,6 +198,29 @@ pixels = "16 pixel"
 width = 6
 height = 1
 
+<<<<<<< HEAD
+[node name="GameOverMenu" parent="UI" instance=ExtResource( 16 )]
+
+[node name="Label" parent="UI/GameOverMenu" index="0"]
+margin_right = 268.0
+margin_bottom = 118.0
+text = "GAME OVER
+Try to fix the machines faster next time!
+
+Try Again?"
+
+[node name="NoButton" parent="UI/GameOverMenu" index="1"]
+margin_left = 161.672
+margin_top = 78.5269
+margin_right = 202.672
+margin_bottom = 98.5269
+
+[node name="YesButton" parent="UI/GameOverMenu" index="2"]
+margin_left = 86.9629
+margin_top = 79.4179
+margin_right = 131.963
+margin_bottom = 100.418
+=======
 [node name="TileMaps" type="Node" parent="."]
 
 [node name="VinePoleTile" type="TileMap" parent="TileMaps"]
@@ -195,6 +235,7 @@ cell_size = Vector2( 32, 16 )
 cell_quadrant_size = 18
 format = 1
 tile_data = PoolIntArray( 524296, 0, 0, 589832, 0, 65536, 655368, 0, 65536, 720904, 0, 65536, 786440, 0, 65536, 851976, 0, 65536, 917512, 0, 65536, 983048, 0, 131072 )
+>>>>>>> 5611ef4de8dbf17937b11b5dbf05fc04faaa7c46
 
 [node name="GroundTile" type="TileMap" parent="TileMaps"]
 tile_set = ExtResource( 2 )
@@ -204,9 +245,6 @@ tile_data = PoolIntArray( 0, 1, 0, 29, 1, 0, 65536, 1, 65536, 65565, 1, 65536, 1
 
 [connection signal="options_menu_request" from="UI/GameMenu" to="Player" method="_on_GameMenu_options_menu_request"]
 [connection signal="quit_game_request" from="UI/GameMenu" to="Player" method="_on_GameMenu_quit_game_request"]
-[connection signal="new_game_request" from="UI/TitleMenu" to="Player" method="_on_TitleMenu_new_game_request"]
-[connection signal="options_menu_request" from="UI/TitleMenu" to="Player" method="_on_TitleMenu_options_menu_request"]
-[connection signal="quit_game_request" from="UI/TitleMenu" to="Player" method="_on_TitleMenu_quit_game_request"]
 [connection signal="pressed" from="UI/GameOverMenu/NoButton" to="Player" method="_on_NoButton_pressed"]
 [connection signal="pressed" from="UI/GameOverMenu/YesButton" to="Player" method="_on_YesButton_pressed"]
 [connection signal="machine_broke" from="Objects/Machines/EnergyMachine" to="Player" method="_on_EnergyMachine_machine_broke"]
@@ -217,8 +255,9 @@ tile_data = PoolIntArray( 0, 1, 0, 29, 1, 0, 65536, 1, 65536, 65565, 1, 65536, 1
 [editable path="UI/InfoBar/Power"]
 [editable path="UI/InfoBar/Mental_Energy"]
 [editable path="UI/InfoBar/Broken_Machines"]
-[editable path="UI/TitleMenu"]
 [editable path="UI/GameOverMenu"]
+<<<<<<< HEAD
+=======
 [editable path="UI/GameInfo"]
 [editable path="Objects/MovingPlatforms/MovingPlatform"]
 [editable path="Objects/MovingPlatforms/MovingPlatform2"]
@@ -230,3 +269,4 @@ tile_data = PoolIntArray( 0, 1, 0, 29, 1, 0, 65536, 1, 65536, 65565, 1, 65536, 1
 [editable path="Objects/Walls/wall3"]
 [editable path="Objects/Walls/wall4"]
 [editable path="Objects/Walls/wall5"]
+>>>>>>> 5611ef4de8dbf17937b11b5dbf05fc04faaa7c46

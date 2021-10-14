@@ -24,9 +24,7 @@ func set_power(amt):
 		_power = amt
 	else:
 		_power = _max
-	if amt > _min :
-		_power = amt
-	else:
+	if amt < _min :
 		_power = _min
 	$Power.get_node("Label").text = str(int(_power))
 
@@ -38,9 +36,7 @@ func  set_mental_energy(amt):
 		_mental_energy = amt
 	else:
 		_mental_energy = _max
-	if amt > _min :
-		_mental_energy = amt
-	else:
+	if amt < _min :
 		_mental_energy = _min
 	$Mental_Energy.get_node("Label").text = str(int(_mental_energy))
 

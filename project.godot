@@ -39,7 +39,7 @@ _global_script_class_icons={
 [application]
 
 config/name="My Game"
-run/main_scene="res://Source/Levels/Level_Template.tscn"
+run/main_scene="res://Source/UI/TitleMenu.tscn"
 config/icon="res://icon.png"
 
 [autoload]
