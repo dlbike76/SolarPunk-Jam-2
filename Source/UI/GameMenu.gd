@@ -27,6 +27,7 @@ func _unhandled_input(event):
 	#This isn't working to hide the menu - need to investigate why...
 	if event.is_action_pressed("ui_cancel"):
 		self.hide()
+		get_tree().paused = false
 
 func _on_QuitGame_pressed():
 	emit_signal("quit_game_request")

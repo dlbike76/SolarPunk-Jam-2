@@ -30,6 +30,6 @@ func _process(delta: float) -> void:
 		if _fixed_signal_sent:
 			_fixed_signal_sent = false
 			_broke_signal_sent = false
-	if timer > 5:   #  The machine will start loosing charge again after 30 seconds
+	if timer > 30:   #  The machine will start loosing charge again after 30 seconds
 		charge -= delta
 		

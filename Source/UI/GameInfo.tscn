@@ -1,0 +1,56 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Source/UI/GameInfo.gd" type="Script" id=1]
+
+[node name="GameInfo" type="ColorRect"]
+margin_left = 7.0
+margin_top = 4.0
+margin_right = 475.0
+margin_bottom = 265.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+margin_right = 467.0
+margin_bottom = 43.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Game Info"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+margin_left = 1.12244
+margin_top = 45.8775
+margin_right = 466.122
+margin_bottom = 262.878
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+bbcode_enabled = true
+bbcode_text = "
+
+Gameplay:   You play a character in a living organic tower that has to repair various machines that are malfunctioning.  If the power reaches zero then the game ends.
+
+Interface:  Use either the WASD keys for movement, or the arrow keys.  Use the Space-bar to interact with objects.
+
+"
+text = "
+
+Gameplay:   You play a character in a living organic tower that has to repair various machines that are malfunctioning.  If the power reaches zero then the game ends.
+
+Interface:  Use either the WASD keys for movement, or the arrow keys.  Use the Space-bar to interact with objects.
+
+"
+
+[node name="Button" type="Button" parent="."]
+margin_left = 356.943
+margin_top = 223.37
+margin_right = 448.943
+margin_bottom = 253.37
+text = "Back"
+
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
