@@ -14,6 +14,7 @@ export var gravity := 1000
 export var max_fall_speed := 5000
 export var power := 100.0  # energy leaked per 10 seconds
 export var mental_energy := 0.0
+export var broken_machines := 0
 
 
 
@@ -21,6 +22,7 @@ func _ready() -> void:
 	add_to_group("players")
 	infobar.set_power(power)
 	infobar.set_mental_energy(mental_energy)
+	infobar.set_broken_count(broken_machines)
 
 func _unhandled_input(event):
 	if event.is_action_pressed("ui_cancel"):
@@ -37,7 +39,7 @@ func _process(delta: float) -> void:
 	move_y(velocity.y * delta, funcref(self, "wall_collision_y"))
 	animate()
 	
-	if power > 0:
+	if (power > 0) and (broken_machines > 0) :
 		var power_used = (power/30) * delta
 		var new_total = infobar.get_power() - power_used
 		infobar.set_power(new_total)
@@ -163,3 +165,15 @@ func _on_TitleMenu_new_game_request():
 	get_parent().get_node("UI").get_node("TitleMenu").hide()
 	new_game()
 
+
+
+func _on_EnergyMachine_machine_fixed():
+	# The machine is fixed, so we should stop leaking energy.
+	broken_machines -= 1;
+	infobar.set_broken_count(broken_machines)
+
+
+func _on_EnergyMachine_machine_broke():
+	broken_machines += 1;
+	infobar.set_broken_count(broken_machines)
+	pass # Replace with function body.
