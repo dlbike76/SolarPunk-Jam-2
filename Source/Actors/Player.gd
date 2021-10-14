@@ -10,7 +10,7 @@ export var acceleration := 120
 export var acceleration_up_trigger := 30
 export var acceleration_up_coeficient := 4
 export var friction := 250
-export var gravity := 1000
+export var gravity := 850
 export var max_fall_speed := 5000
 export var power := 100.0  # energy leaked per 10 seconds
 export var mental_energy := 0.0
@@ -63,9 +63,10 @@ func calculate_velocity(direction_x: float, direction_y: float) -> Vector2:
 		out.x = 0
 		out.x = move_toward(out.x, 0, friction * get_process_delta_time())
 	else:
-		if Game.check_ladders_collision(self,Vector2(0,0)) :
+		if Game.check_ladders_collision(self,Vector2(0,0)) and direction_y != 0 :
 			out.y += acceleration * direction_y * get_process_delta_time()
-			if direction_y == 0 : out.y = move_toward(out.y, 0, friction * get_process_delta_time())
+			#if direction_y == 0 : out.y = move_toward(out.y, 0, friction * get_process_delta_time())
+			out.y = clamp(out.y, -65, 65)
 		else:
 			out.y += gravity * get_process_delta_time()
 		if (direction_x > 0 and velocity.x >= 0) or (direction_x < 0 and velocity.x <= 0):
