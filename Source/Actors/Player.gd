@@ -15,6 +15,7 @@ export var max_fall_speed := 5000
 export var power := 100.0  # energy leaked per 10 seconds
 export var mental_energy := 0.0
 export var broken_machines := 0
+var power_lost = 0.0
 
 
 
@@ -41,6 +42,7 @@ func _process(delta: float) -> void:
 	
 	if (power > 0) and (broken_machines > 0) :
 		var power_used = (power/40) * delta
+		power_lost += power_used
 		var new_total = infobar.get_power() - power_used
 		infobar.set_power(new_total)
 	
@@ -150,26 +152,31 @@ func _on_NoButton_pressed():
 
 func _on_YesButton_pressed():
 	get_parent().get_node("UI/GameOverMenu").hide()
-	new_game()
+	get_tree().reload_current_scene()
+	get_tree().paused = false
 	
 
-func _on_TitleMenu_options_menu_request(caller):
-	pass # Replace with function body.
+#func _on_TitleMenu_options_menu_request(caller):
+#	pass # Replace with function body.
 
-
-func _on_TitleMenu_quit_game_request():
-	quit_game()
-
-
-func _on_TitleMenu_new_game_request():
-	get_parent().get_node("UI").get_node("TitleMenu").hide()
-	new_game()
+# Not needed any more
+#func _on_TitleMenu_quit_game_request():
+#	quit_game()
+#
+#
+#func _on_TitleMenu_new_game_request():
+#	get_parent().get_node("UI").get_node("TitleMenu").hide()
+#	new_game()
 
 
 
 func _on_EnergyMachine_machine_fixed():
 	# The machine is fixed, so we should stop leaking energy.
-	broken_machines -= 1;
+	var power_addition = power_lost * (broken_machines * 0.5)
+	broken_machines -= 1
+	power_lost = 0
+	var current_power = infobar.get_power()
+	infobar.set_power( current_power + power_addition)
 	infobar.set_broken_count(broken_machines)
 
 

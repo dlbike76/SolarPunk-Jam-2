@@ -8,7 +8,7 @@ var _broke_signal_sent = false  #  send the respective signal once
 signal machine_fixed
 signal machine_broke
 
-var charge = 0.0
+var charge = 0.0 
 var timer = 0    # A Timer that starts counting once the machine if fixed
 
 func _process(delta: float) -> void:

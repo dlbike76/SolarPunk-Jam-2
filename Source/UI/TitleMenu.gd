@@ -1,6 +1,7 @@
 extends ColorRect
 
 onready var title_menu = $Menu
+onready var game : PackedScene = preload("res://Source/Levels/Level_Template.tscn")
 
 signal options_menu_request(caller)
 signal quit_game_request
@@ -19,7 +20,7 @@ func _ready():
 
 func _on_GameInfo_pressed():
 	get_parent().get_node("GameInfo").show()
-	
+
 
 
 
@@ -30,8 +31,9 @@ func _on_Options_pressed():
 
 
 func _on_QuitGame_pressed():
-	emit_signal("quit_game_request")
+	get_tree().quit()
 
 
 func _on_NewGame_pressed():
-	emit_signal("new_game_request")
+	get_tree().paused = false
+	get_tree().change_scene_to(game)

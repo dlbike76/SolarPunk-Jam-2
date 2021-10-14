@@ -1,8 +1,11 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Source/UI/TitleMenu.gd" type="Script" id=1]
+[ext_resource path="res://Source/UI/GameInfo.tscn" type="PackedScene" id=2]
 
-[node name="TitleMenu" type="ColorRect"]
+[node name="UI" type="CanvasLayer"]
+
+[node name="TitleMenu" type="ColorRect" parent="."]
 pause_mode = 2
 margin_left = -1.0
 margin_top = 2.0
@@ -14,7 +17,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="TitleMenu"]
 margin_left = 12.0
 margin_top = 2.0
 margin_right = 481.0
@@ -22,7 +25,7 @@ margin_bottom = 23.0
 text = "SolarPunk Jam Game"
 align = 1
 
-[node name="Menu" type="VBoxContainer" parent="."]
+[node name="Menu" type="VBoxContainer" parent="TitleMenu"]
 margin_left = 164.363
 margin_top = 84.7725
 margin_right = 322.363
@@ -32,7 +35,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="GameInfo" type="Button" parent="Menu"]
+[node name="GameInfo" type="Button" parent="TitleMenu/Menu"]
 margin_right = 158.0
 margin_bottom = 20.0
 text = "Game Info"
@@ -40,25 +43,29 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="NewGame" type="Button" parent="Menu"]
+[node name="NewGame" type="Button" parent="TitleMenu/Menu"]
 margin_top = 24.0
 margin_right = 158.0
 margin_bottom = 44.0
 text = "New Game"
 
-[node name="Options" type="Button" parent="Menu"]
+[node name="Options" type="Button" parent="TitleMenu/Menu"]
 margin_top = 48.0
 margin_right = 158.0
 margin_bottom = 68.0
 text = "Options"
 
-[node name="QuitGame" type="Button" parent="Menu"]
+[node name="QuitGame" type="Button" parent="TitleMenu/Menu"]
 margin_top = 72.0
 margin_right = 158.0
 margin_bottom = 92.0
 text = "Quit Game"
 
-[connection signal="pressed" from="Menu/GameInfo" to="." method="_on_GameInfo_pressed"]
-[connection signal="pressed" from="Menu/NewGame" to="." method="_on_NewGame_pressed"]
-[connection signal="pressed" from="Menu/Options" to="." method="_on_Options_pressed"]
-[connection signal="pressed" from="Menu/QuitGame" to="." method="_on_QuitGame_pressed"]
+[node name="GameInfo" parent="." instance=ExtResource( 2 )]
+pause_mode = 2
+visible = false
+
+[connection signal="pressed" from="TitleMenu/Menu/GameInfo" to="TitleMenu" method="_on_GameInfo_pressed"]
+[connection signal="pressed" from="TitleMenu/Menu/NewGame" to="TitleMenu" method="_on_NewGame_pressed"]
+[connection signal="pressed" from="TitleMenu/Menu/Options" to="TitleMenu" method="_on_Options_pressed"]
+[connection signal="pressed" from="TitleMenu/Menu/QuitGame" to="TitleMenu" method="_on_QuitGame_pressed"]
