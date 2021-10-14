@@ -1,7 +1,7 @@
 extends Node2D
 
 onready var animated_sprite := $AnimatedSprite
-onready var infobar := get_parent().get_parent().get_node("UI/InfoBar")
+onready var infobar := get_parent().get_parent().get_parent().get_node("UI/InfoBar")
 onready var hitbox := $Hitbox
 
 var mental_energy := 0.0

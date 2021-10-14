@@ -1,6 +1,6 @@
 extends Interaction_Object
 
-onready var infobar := get_parent().get_node("UI/InfoBar")
+onready var infobar := get_parent().get_parent().get_parent().get_node("UI/InfoBar")
 onready var animated_sprite := $AnimatedSprite
 
 var mental_energy := 0.0
