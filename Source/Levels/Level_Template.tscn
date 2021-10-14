@@ -117,6 +117,9 @@ position = Vector2( 336, 208 )
 [node name="Door" parent="Doors" instance=ExtResource( 19 )]
 position = Vector2( 112, 224 )
 
+[node name="AnimatedSprite" parent="Doors/Door" index="0"]
+frame = 1
+
 [node name="Hitbox" parent="Doors/Door" index="1"]
 visible = false
 
@@ -204,6 +207,8 @@ text = "Yes"
 visible = false
 position = Vector2( 384, 240 )
 
+[connection signal="machine_broke" from="Machines/EnergyMachine" to="Player" method="_on_EnergyMachine_machine_broke"]
+[connection signal="machine_fixed" from="Machines/EnergyMachine" to="Player" method="_on_EnergyMachine_machine_fixed"]
 [connection signal="options_menu_request" from="UI/GameMenu" to="Player" method="_on_GameMenu_options_menu_request"]
 [connection signal="quit_game_request" from="UI/GameMenu" to="Player" method="_on_GameMenu_quit_game_request"]
 [connection signal="new_game_request" from="UI/TitleMenu" to="Player" method="_on_TitleMenu_new_game_request"]

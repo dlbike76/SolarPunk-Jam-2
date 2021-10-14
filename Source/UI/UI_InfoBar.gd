@@ -2,9 +2,18 @@ extends ColorRect
 
 var _power setget set_power, get_power
 var _mental_energy setget set_mental_energy, get_mental_energy
+var _broken_count setget set_broken_count, get_broken_count
+
 export var _max_mental_energy = 100.0
 onready var power_sprite : AnimatedSprite = get_node("Power").get_node("AnimatedSprite")
 onready var mental_energy_sprite : AnimatedSprite = get_node("Mental_Energy").get_node("AnimatedSprite")
+
+func set_broken_count(count):
+	_broken_count = count
+	$Broken_Machines.get_node("Label").text = str(int(count))
+
+func get_broken_count():
+	return _broken_count
 
 
 func set_power(amt):
