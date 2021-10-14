@@ -1,6 +1,6 @@
 [gd_resource type="TileSet" load_steps=2 format=2]
 
-[ext_resource path="res://Assets/Sprites/Vine_no.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Sprites/Objects/pole.png" type="Texture" id=1]
 
 [resource]
 0/name = "Vine_no.png 0"
