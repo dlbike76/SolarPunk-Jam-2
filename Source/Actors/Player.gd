@@ -58,7 +58,7 @@ func check_collisions_with_non_walls ():
 func calculate_velocity(direction_x: float, direction_y: float) -> Vector2:
 	var out := velocity
 	if (Game.check_object_interaction_collision(self,Vector2(0,0)) and Input.is_action_pressed("action")): 
-		out.x == 0
+		out.x = 0
 		out.x = move_toward(out.x, 0, friction * get_process_delta_time())
 	else:
 		if Game.check_ladders_collision(self,Vector2(0,0)) :
