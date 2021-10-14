@@ -148,6 +148,9 @@ width = 3
 height = 1
 
 [node name="Camera" parent="." instance=ExtResource( 5 )]
+zoom = Vector2( 0.8, 0.8 )
+limit_left = 0
+limit_right = 480
 
 [node name="Background" type="CanvasLayer" parent="."]
 layer = -1
@@ -167,9 +170,6 @@ margin_left = 24.0
 margin_top = 8.0
 margin_right = 24.0
 margin_bottom = 8.0
-
-[node name="AnimatedSprite" parent="UI/InfoBar/Broken_Machines" index="1"]
-animation = "4"
 
 [node name="TitleMenu" parent="UI" instance=ExtResource( 20 )]
 

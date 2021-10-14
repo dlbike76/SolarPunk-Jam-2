@@ -30,9 +30,6 @@ margin_top = 1.33484
 margin_right = 199.486
 margin_bottom = 33.3348
 
-[node name="AnimatedSprite" parent="Broken_Machines" index="1"]
-animation = "default"
-
 [editable path="Power"]
 [editable path="Mental_Energy"]
 [editable path="Broken_Machines"]

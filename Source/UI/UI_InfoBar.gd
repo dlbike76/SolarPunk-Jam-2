@@ -1,12 +1,16 @@
 extends ColorRect
 
+
+onready var power_sprite : AnimatedSprite = get_node("Power").get_node("AnimatedSprite")
+onready var mental_energy_sprite : AnimatedSprite = get_node("Mental_Energy").get_node("AnimatedSprite")
+onready var broken_count_sprite : AnimatedSprite = get_node("Broken_Machines").get_node("AnimatedSprite")
+
+export var _min = 0.0
+export var _max = 100.0
+
 var _power setget set_power, get_power
 var _mental_energy setget set_mental_energy, get_mental_energy
 var _broken_count setget set_broken_count, get_broken_count
-
-export var _max_mental_energy = 100.0
-onready var power_sprite : AnimatedSprite = get_node("Power").get_node("AnimatedSprite")
-onready var mental_energy_sprite : AnimatedSprite = get_node("Mental_Energy").get_node("AnimatedSprite")
 
 func set_broken_count(count):
 	_broken_count = count
@@ -15,20 +19,29 @@ func set_broken_count(count):
 func get_broken_count():
 	return _broken_count
 
-
 func set_power(amt):
-	_power = amt
+	if amt < _max :
+		_power = amt
+	else:
+		_power = _max
+	if amt > _min :
+		_power = amt
+	else:
+		_power = _min
 	$Power.get_node("Label").text = str(int(_power))
 
 func get_power():
 	return _power
 
 func  set_mental_energy(amt):
-	# We ae capping the mental energy to _max_mental_energy
-	if amt < _max_mental_energy :
+	if amt < _max :
 		_mental_energy = amt
 	else:
-		_mental_energy = _max_mental_energy 
+		_mental_energy = _max
+	if amt > _min :
+		_mental_energy = amt
+	else:
+		_mental_energy = _min
 	$Mental_Energy.get_node("Label").text = str(int(_mental_energy))
 
 func get_mental_energy():
@@ -37,6 +50,7 @@ func get_mental_energy():
 func _process(delta: float) -> void:
 	animate_power()
 	animate_mental_energy()
+	animate_broken_counts()
 
 func animate_power():
 	if _power < 10 :
@@ -57,7 +71,6 @@ func animate_power():
 		power_sprite.set_animation("7")
 	else :
 		power_sprite.set_animation("8")
-	pass
 
 func animate_mental_energy():
 	if _mental_energy > 90 :
@@ -87,4 +100,14 @@ func animate_mental_energy():
 	else:
 		mental_energy_sprite.set_animation("0")
 
-
+func animate_broken_counts():
+	if _broken_count == 0:
+		broken_count_sprite.set_animation("0")
+	if _broken_count == 1:
+		broken_count_sprite.set_animation("1")
+	if _broken_count == 2:
+		broken_count_sprite.set_animation("2")
+	if _broken_count == 3:
+		broken_count_sprite.set_animation("3")
+	if _broken_count == 4:
+		broken_count_sprite.set_animation("4")
