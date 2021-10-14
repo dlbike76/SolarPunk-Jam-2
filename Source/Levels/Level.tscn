@@ -43,7 +43,6 @@ margin_right = 24.0
 margin_bottom = 8.0
 
 [node name="TitleMenu" parent="UI" instance=ExtResource( 20 )]
-visible = false
 
 [node name="GameOverMenu" parent="UI" instance=ExtResource( 16 )]
 
@@ -95,9 +94,6 @@ format = 1
 
 [connection signal="options_menu_request" from="UI/GameMenu" to="Player" method="_on_GameMenu_options_menu_request"]
 [connection signal="quit_game_request" from="UI/GameMenu" to="Player" method="_on_GameMenu_quit_game_request"]
-[connection signal="new_game_request" from="UI/TitleMenu" to="Player" method="_on_TitleMenu_new_game_request"]
-[connection signal="options_menu_request" from="UI/TitleMenu" to="Player" method="_on_TitleMenu_options_menu_request"]
-[connection signal="quit_game_request" from="UI/TitleMenu" to="Player" method="_on_TitleMenu_quit_game_request"]
 [connection signal="pressed" from="UI/GameOverMenu/NoButton" to="Player" method="_on_NoButton_pressed"]
 [connection signal="pressed" from="UI/GameOverMenu/YesButton" to="Player" method="_on_YesButton_pressed"]
 

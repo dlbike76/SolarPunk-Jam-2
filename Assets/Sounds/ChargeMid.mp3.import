@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/ChargeMid.mp3-dba3494231a0b63f035802e37c4e756a.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sounds/ChargeMid.mp3"
+dest_files=[ "res://.import/ChargeMid.mp3-dba3494231a0b63f035802e37c4e756a.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Float.mp3-730c227007dacaed34714716cb731791.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sounds/Float.mp3"
+dest_files=[ "res://.import/Float.mp3-730c227007dacaed34714716cb731791.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

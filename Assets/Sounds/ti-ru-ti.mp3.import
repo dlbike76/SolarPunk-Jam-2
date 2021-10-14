@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/ti-ru-ti.mp3-3ea4ab8d4158e7a22a69c1abe4c47418.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sounds/ti-ru-ti.mp3"
+dest_files=[ "res://.import/ti-ru-ti.mp3-3ea4ab8d4158e7a22a69c1abe4c47418.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
