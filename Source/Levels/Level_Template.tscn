@@ -119,9 +119,6 @@ position = Vector2( 336, 208 )
 [node name="Door" parent="Doors" instance=ExtResource( 19 )]
 position = Vector2( 112, 224 )
 
-[node name="AnimatedSprite" parent="Doors/Door" index="0"]
-frame = 1
-
 [node name="Hitbox" parent="Doors/Door" index="1"]
 visible = false
 
@@ -151,6 +148,9 @@ width = 3
 height = 1
 
 [node name="Camera" parent="." instance=ExtResource( 5 )]
+zoom = Vector2( 0.8, 0.8 )
+limit_left = 0
+limit_right = 480
 
 [node name="Background" type="CanvasLayer" parent="."]
 layer = -1
