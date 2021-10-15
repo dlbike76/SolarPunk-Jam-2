@@ -45,6 +45,8 @@ func _process(delta: float) -> void:
 	move_x(velocity.x * delta, funcref(self, "wall_collision_x"))
 	move_y(velocity.y * delta, funcref(self, "wall_collision_y"))
 	animate()
+	power = infobar.get_power()
+	mental_energy = infobar.get_mental_energy()
 	
 	if (power > 0) and (broken_machines > 0) :
 		var power_used = (power/40) * delta

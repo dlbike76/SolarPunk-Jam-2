@@ -216,6 +216,7 @@ tile_data = PoolIntArray( 0, 1, 0, 29, 1, 0, 65536, 1, 65536, 65565, 1, 65536, 1
 [editable path="UI/InfoBar/Broken_Machines"]
 [editable path="UI/GameInfo"]
 [editable path="UI/GameOverMenu"]
+[editable path="Objects/Chargers/Charger"]
 [editable path="Objects/MovingPlatforms/MovingPlatform"]
 [editable path="Objects/MovingPlatforms/MovingPlatform2"]
 [editable path="Objects/Doors/Door"]
