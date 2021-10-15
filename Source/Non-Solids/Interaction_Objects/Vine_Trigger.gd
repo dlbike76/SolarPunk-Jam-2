@@ -4,6 +4,7 @@ onready var animated_sprite := $AnimatedSprite
 onready var ladder := $Ladder
 
 var charge = 0.0
+export var vine_height := 100
 
 func _process(delta: float) -> void:
 	if charge > 90:
@@ -16,4 +17,4 @@ func _process(delta: float) -> void:
 		animated_sprite.play("idle")
 
 func vine_ladder_grow():
-	ladder.hitbox.height = 100 
+	ladder.hitbox.height = vine_height
