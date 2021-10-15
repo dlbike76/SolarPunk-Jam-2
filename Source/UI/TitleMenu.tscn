@@ -65,6 +65,9 @@ text = "Quit Game"
 pause_mode = 2
 visible = false
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+pause_mode = 2
+
 [connection signal="pressed" from="TitleMenu/Menu/GameInfo" to="TitleMenu" method="_on_GameInfo_pressed"]
 [connection signal="pressed" from="TitleMenu/Menu/NewGame" to="TitleMenu" method="_on_NewGame_pressed"]
 [connection signal="pressed" from="TitleMenu/Menu/Options" to="TitleMenu" method="_on_Options_pressed"]

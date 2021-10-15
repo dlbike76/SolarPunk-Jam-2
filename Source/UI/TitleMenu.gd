@@ -1,7 +1,10 @@
 extends ColorRect
 
 onready var title_menu = $Menu
-onready var game : PackedScene = load("res://Source/Levels/Level_Template.tscn")
+onready var game : PackedScene = preload("res://Source/Levels/Level_Template.tscn")
+onready var intro_sound : AudioStreamMP3 = preload("res://Assets/Sounds/Intro.mp3")
+onready var sound_player : AudioStreamPlayer = get_parent().get_node("AudioStreamPlayer")
+
 
 signal options_menu_request(caller)
 signal quit_game_request
@@ -10,7 +13,9 @@ signal new_game_request
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	get_tree().paused = true
-
+	sound_player.stream = intro_sound
+	sound_player.play()
+	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
