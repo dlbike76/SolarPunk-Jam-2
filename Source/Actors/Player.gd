@@ -12,10 +12,14 @@ export var acceleration_up_coeficient := 4
 export var friction := 250
 export var gravity := 850
 export var max_fall_speed := 5000
-export var power := 100.0  # energy leaked per 10 seconds
+export var power := 100.0  
 export var mental_energy := 0.0
 export var broken_machines := 0
 var power_lost = 0.0
+
+onready var intro_sound : AudioStreamMP3 = preload("res://Assets/Sounds/Intro.mp3")
+onready var song1 : AudioStreamMP3 = preload("res://Assets/Sounds/Song-1.mp3")
+onready var sound_player : AudioStreamPlayer = get_parent().get_node("AudioStreamPlayer")
 
 
 
@@ -24,6 +28,8 @@ func _ready() -> void:
 	infobar.set_power(power)
 	infobar.set_mental_energy(mental_energy)
 	infobar.set_broken_count(broken_machines)
+	sound_player.stream = song1
+	sound_player.play()
 
 func _unhandled_input(event):
 	if event.is_action_pressed("ui_cancel"):
