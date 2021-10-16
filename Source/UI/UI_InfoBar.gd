@@ -140,3 +140,7 @@ func animate_broken_counts():
 		broken_count_sprite.set_animation("3")
 	if _broken_count == 4:
 		broken_count_sprite.set_animation("4")
+	if _broken_count == 5:
+		broken_count_sprite.set_animation("5")
+	if _broken_count == 6:
+		broken_count_sprite.set_animation("6")
