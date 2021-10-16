@@ -73,18 +73,14 @@ position = Vector2( 208, 200 )
 offset = Vector2( 0, -40 )
 
 [node name="Hitbox" parent="Objects/MovingPlatforms/MovingPlatform" index="0"]
-pixels = "16 pixel"
 width = 3
-height = 1
 
 [node name="MovingPlatform2" parent="Objects/MovingPlatforms" instance=ExtResource( 13 )]
 position = Vector2( 320, 80 )
 offset = Vector2( -50, 0 )
 
 [node name="Hitbox" parent="Objects/MovingPlatforms/MovingPlatform2" index="0"]
-pixels = "16 pixel"
 width = 3
-height = 1
 
 [node name="Machines" type="Node" parent="Objects"]
 
@@ -112,8 +108,6 @@ position = Vector2( 264, 152 )
 [node name="Hitbox" parent="Objects/Ladders/Ladder" index="0"]
 visible = false
 position = Vector2( 6.2363, 0 )
-pixels = "1 pixel"
-width = 4
 height = 90
 
 [node name="Springs" type="Node" parent="Objects"]
