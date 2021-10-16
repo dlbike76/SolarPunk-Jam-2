@@ -19,8 +19,6 @@
 [ext_resource path="res://Source/Non-Solids/Interaction_Objects/LongVine.tscn" type="PackedScene" id=17]
 [ext_resource path="res://Source/Solids/MovingPlatform.tscn" type="PackedScene" id=18]
 [ext_resource path="res://Assets/Sounds/Song-1.mp3" type="AudioStream" id=19]
-
-[ext_resource path="res://Source/Levels/Machines.gd" type="Script" id=20]
 [ext_resource path="res://Source/Non-Solids/Interaction_Objects/MidVine.tscn" type="PackedScene" id=20]
 [ext_resource path="res://Source/Non-Solids/Interaction_Objects/ShortVine.tscn" type="PackedScene" id=21]
 [ext_resource path="res://Source/Resources/Flower_tileset.tres" type="TileSet" id=22]
