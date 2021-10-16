@@ -118,23 +118,23 @@ region = Rect2( 416, 0, 32, 64 )
 atlas = ExtResource( 1 )
 region = Rect2( 448, 0, 32, 64 )
 
-[sub_resource type="AtlasTexture" id=32]
+[sub_resource type="AtlasTexture" id=29]
 atlas = ExtResource( 4 )
 region = Rect2( 0, 0, 32, 64 )
 
-[sub_resource type="AtlasTexture" id=33]
+[sub_resource type="AtlasTexture" id=30]
 atlas = ExtResource( 4 )
 region = Rect2( 32, 0, 32, 64 )
 
-[sub_resource type="AtlasTexture" id=29]
-atlas = ExtResource( 1 )
-region = Rect2( 448, 0, 32, 64 )
-
-[sub_resource type="AtlasTexture" id=30]
+[sub_resource type="AtlasTexture" id=31]
 atlas = ExtResource( 1 )
 region = Rect2( 0, 0, 32, 64 )
 
-[sub_resource type="SpriteFrames" id=31]
+[sub_resource type="AtlasTexture" id=32]
+atlas = ExtResource( 1 )
+region = Rect2( 448, 0, 32, 64 )
+
+[sub_resource type="SpriteFrames" id=33]
 animations = [ {
 "frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ) ],
 "loop": true,
@@ -146,19 +146,19 @@ animations = [ {
 "name": "open",
 "speed": 15.0
 }, {
-"frames": [ SubResource( 32 ), SubResource( 33 ) ],
+"frames": [ SubResource( 29 ), SubResource( 30 ) ],
 "loop": true,
 "name": "charging",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 29 ) ],
-"loop": true,
-"name": "idle_open",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 30 ) ],
+"frames": [ SubResource( 31 ) ],
 "loop": true,
 "name": "idle_close",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 32 ) ],
+"loop": true,
+"name": "idle_open",
 "speed": 5.0
 } ]
 
@@ -166,20 +166,23 @@ animations = [ {
 script = ExtResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-frames = SubResource( 31 )
+frames = SubResource( 33 )
 animation = "charging"
+frame = 1
 playing = true
 
 [node name="Hitbox" parent="." instance=ExtResource( 5 )]
-x = 24
+visible = false
+x = -7
 y = 16
+width = 31
 
 [node name="Wall" parent="." instance=ExtResource( 3 )]
 
 [node name="Hitbox" parent="Wall" index="0"]
 visible = false
 x = 3
-y = -57
+y = -32
 width = 10
 height = 64
 

@@ -77,24 +77,19 @@ script = ExtResource( 2 )
 
 [node name="Hitbox" parent="." instance=ExtResource( 1 )]
 visible = false
-x = -2
-y = 34
 width = 4
 height = 14
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 0, -48 )
 frames = SubResource( 13 )
 animation = "grow"
 frame = 8
 
 [node name="Ladder" parent="." instance=ExtResource( 5 )]
-visible = false
 
 [node name="Hitbox" parent="Ladder" index="0"]
-pixels = "1 pixel"
-x = -2
-y = -45
-width = 4
+y = -64
 height = 4
 
 [editable path="Ladder"]

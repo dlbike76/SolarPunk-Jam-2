@@ -8,6 +8,10 @@
 script = ExtResource( 2 )
 
 [node name="Hitbox" parent="." instance=ExtResource( 1 )]
+visible = false
+pixels = "16 pixel"
+width = 2
+height = 1
 
 [node name="Tween" type="Tween" parent="."]
 
@@ -17,8 +21,4 @@ texture = ExtResource( 3 )
 
 [node name="Sprite2" type="Sprite" parent="."]
 position = Vector2( 24, 8 )
-texture = ExtResource( 3 )
-
-[node name="Sprite3" type="Sprite" parent="."]
-position = Vector2( 40, 8 )
 texture = ExtResource( 3 )

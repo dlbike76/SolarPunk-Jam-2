@@ -24,5 +24,5 @@ func wall_grow():
 	wall.hitbox.height = 64
 
 func wall_ungrow():
-	wall.hitbox.height = 2
+	wall.hitbox.height = 0
 

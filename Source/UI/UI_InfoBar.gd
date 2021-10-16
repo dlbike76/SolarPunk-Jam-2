@@ -11,6 +11,33 @@ export var _max = 100.0
 var _power setget set_power, get_power
 var _mental_energy setget set_mental_energy, get_mental_energy
 var _broken_count setget set_broken_count, get_broken_count
+var global_counter 
+var global_countdown_amount 
+
+var default_amount = 5.0 * 60
+
+func _ready():
+	global_countdown_amount = default_amount
+	global_counter = 0.0
+
+func add_status_msg(msg):
+	$StatusMsg.get_node("Label").text = str($StatusMsg.get_node("Label").text," ", msg)
+
+func show_status_msg(msg):
+	$StatusMsg.get_node("Label").text = msg
+	$StatusMsg.show()
+
+func hide_status_msg():
+	$StatusMsg.hide()
+
+func set_global_countdown_amount(amt):
+	global_countdown_amount = amt
+	
+
+func get_global_countdown() -> float:
+	var amt = global_countdown_amount - global_counter
+	return amt   # returned in minutes
+
 
 func set_broken_count(count):
 	_broken_count = count
@@ -44,9 +71,15 @@ func get_mental_energy():
 	return _mental_energy
 
 func _process(delta: float) -> void:
+	global_counter += delta
+	var countdown_minutes = int(get_global_countdown() / 60)
+	var countdown_seconds = int(get_global_countdown() ) % 60
+		
+	$Global_Countdown.get_node("Counter").text = str( countdown_minutes, ":", str(countdown_seconds).pad_zeros(2))
 	animate_power()
 	animate_mental_energy()
 	animate_broken_counts()
+	
 
 func animate_power():
 	if _power < 10 :
@@ -107,3 +140,7 @@ func animate_broken_counts():
 		broken_count_sprite.set_animation("3")
 	if _broken_count == 4:
 		broken_count_sprite.set_animation("4")
+	if _broken_count == 5:
+		broken_count_sprite.set_animation("5")
+	if _broken_count == 6:
+		broken_count_sprite.set_animation("6")

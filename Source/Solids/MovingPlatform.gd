@@ -3,10 +3,12 @@ extends Solid
 onready var tween := $Tween
 onready var start := global_position
 onready var follow := global_position
+onready var interaction_box := $InteractionBox
 
 export var offset := Vector2.ZERO
 export var time := 2.0
 export var delay := 1.0
+
 
 func _ready() -> void:
 	init_tween()
