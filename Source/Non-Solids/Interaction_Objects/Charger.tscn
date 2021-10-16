@@ -98,5 +98,5 @@ height = 40
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 17 )
 animation = "charge "
-frame = 4
+frame = 6
 playing = true

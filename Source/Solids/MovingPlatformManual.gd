@@ -9,17 +9,10 @@ export var offset := Vector2.ZERO
 export var time := 2.0
 export var delay := 1.0
 
-var charge = 0.0
 
 
 func _ready() -> void:
 	init_tween()
-
-func _process(delta: float) -> void:
-	if charge > 90:
-		tween.start()
-	if (Game.check_player_collision(interaction_box,Vector2(0,0)) and Input.is_action_pressed("action")): 
-		charge += 30 * delta
 
 
 func init_tween():
