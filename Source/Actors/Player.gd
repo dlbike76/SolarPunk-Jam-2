@@ -60,8 +60,7 @@ func _process(delta: float) -> void:
 
 func check_collisions_with_non_walls ():
 	if Game.check_springs_y_collision(self,Vector2(0,1)) : coll_spring_y()
-	if Game.check_springs_x_r_collision(self,Vector2(-1,0)) : coll_spring_x_r()
-	if Game.check_springs_x_l_collision(self,Vector2(1,0)) : coll_spring_x_l()
+
 
 func calculate_velocity(direction_x: float, direction_y: float) -> Vector2:
 	var out := velocity
@@ -116,13 +115,9 @@ func wall_collision_y():
 	velocity.y = 0
 
 func coll_spring_y():
-	velocity.y = -500
+	velocity.y = -350
 
-func coll_spring_x_r():
-	velocity.x = 500
 
-func coll_spring_x_l():
-	velocity.x = -500
 
 func is_riding(solid, offset):
 	return !hitbox.intersects(solid.hitbox, Vector2.ZERO) && hitbox.intersects(solid.hitbox, offset)
