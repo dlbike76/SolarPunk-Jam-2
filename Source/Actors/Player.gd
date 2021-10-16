@@ -3,7 +3,9 @@ extends Actor
 onready var animated_sprite := $AnimatedSprite
 onready var hitbox := $Hitbox
 onready var infobar := get_parent().get_node("UI/InfoBar")
-
+onready var sfx_jump :=  $Jump
+onready var sfx_interact :=  $Interact
+#onready var sfx_walk := $Walk
 
 export var max_speed := 100
 export var acceleration := 120
@@ -15,12 +17,13 @@ export var max_fall_speed := 5000
 export var power := 100.0  
 export var mental_energy := 0.0
 export var broken_machines := 0
+
 var power_lost = 0.0
 var on_ladder := false
 
 onready var intro_sound : AudioStreamMP3 = preload("res://Assets/Sounds/Intro.mp3")
 onready var song1 : AudioStreamMP3 = preload("res://Assets/Sounds/Song-1.mp3")
-onready var sound_player : AudioStreamPlayer = get_parent().get_node("AudioStreamPlayer")
+onready var sound_player : AudioStreamPlayer = get_parent().get_node("Music")
 
 
 
@@ -36,7 +39,6 @@ func _unhandled_input(event):
 	if event.is_action_pressed("ui_cancel"):
 		get_tree().paused = true
 		get_parent().get_node("UI/GameMenu").show()
-
 
 func _process(delta: float) -> void:
 	check_collisions_with_non_walls()
@@ -57,12 +59,13 @@ func _process(delta: float) -> void:
 		get_tree().paused = true
 		get_parent().get_node("UI/GameOverMenu").show()
 
-
-
 func check_collisions_with_non_walls ():
 	if Game.check_springs_y_collision(self,Vector2(0,1)) : coll_spring_y()
-
-
+	if Game.check_object_interaction_collision(self,Vector2(0,0)) and Input.is_action_pressed("action"): 
+		if !sfx_interact.is_playing():
+			sfx_interact.play()
+	else: sfx_interact.stop()
+	
 func calculate_velocity(direction_x: float, direction_y: float) -> Vector2:
 	var out := velocity
 	if (Game.check_object_interaction_collision(self,Vector2(0,0)) and Input.is_action_pressed("action")): 
@@ -72,7 +75,6 @@ func calculate_velocity(direction_x: float, direction_y: float) -> Vector2:
 		if Game.check_ladders_collision(self,Vector2(0,0)) and direction_y != 0:
 			on_ladder = true
 			out.y += acceleration * direction_y * get_process_delta_time()
-			#out.y = move_toward(out.y, 0, friction/2 * get_process_delta_time())
 			out.y = clamp(out.y, -65, 65)
 		if ! Game.check_ladders_collision(self,Vector2(0,0)): on_ladder = false
 		if on_ladder == true and direction_y == 0: out.y = 0
@@ -90,6 +92,7 @@ func calculate_velocity(direction_x: float, direction_y: float) -> Vector2:
 		out.y = clamp(out.y, -max_fall_speed, max_fall_speed)
 	return out
 
+
 func animate() -> void:
 	if Game.check_object_interaction_collision(self,Vector2(0,0)) and Input.is_action_pressed("action"):
 		animated_sprite.play("power")
@@ -105,8 +108,10 @@ func animate() -> void:
 				if Game.check_walls_collision(self,Vector2(1,0)): animated_sprite.play("collision_right")
 				elif Game.check_walls_collision(self,Vector2(-1,0)): animated_sprite.play("collision_left")
 				else:
-					if velocity.x > 0 : animated_sprite.play("walk_right")
-					elif velocity.x <0 : animated_sprite.play("walk_left")
+					if velocity.x > 0 : 
+						animated_sprite.play("walk_right")
+					elif velocity.x <0 : 
+						animated_sprite.play("walk_left")
 					else : animated_sprite.play("idle")
 
 func wall_collision_x():
@@ -119,7 +124,7 @@ func wall_collision_y():
 
 func coll_spring_y():
 	velocity.y = -400
-
+	sfx_jump.play()
 
 
 func is_riding(solid, offset):

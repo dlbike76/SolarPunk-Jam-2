@@ -277,12 +277,15 @@ position = Vector2( 624, 160 )
 
 [node name="Vine_Trigger" parent="Objects/Vines" instance=ExtResource( 17 )]
 position = Vector2( 464, 392 )
+charge_rate = 40.0
 
 [node name="Vine_Trigger2" parent="Objects/Vines" instance=ExtResource( 20 )]
 position = Vector2( 48, 1128 )
+charge_rate = 40.0
 
 [node name="Vine_Trigger3" parent="Objects/Vines" instance=ExtResource( 21 )]
 position = Vector2( 528, 840 )
+charge_rate = 40.0
 
 [node name="Ladders" type="Node2D" parent="Objects"]
 visible = false
@@ -1217,7 +1220,7 @@ margin_bottom = 8.0
 
 [node name="GameOverMenu" parent="UI" instance=ExtResource( 16 )]
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 19 )
 
 [connection signal="options_menu_request" from="UI/GameMenu" to="Player" method="_on_GameMenu_options_menu_request"]
