@@ -11,6 +11,7 @@ onready var player_energy = the_player.mental_energy
 var used = false
 var charge = 0.0
 var played := false
+var timer = 0.0
 
 export var vine_height := 100
 export var charge_rate := 30.0
