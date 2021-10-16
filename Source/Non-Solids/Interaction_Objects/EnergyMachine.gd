@@ -9,8 +9,7 @@ var fixed_signal_sent = false  #  These variables are used so we only
 var broke_signal_sent = false  #  send the respective signal once 
 var played := false
 var played2 := false
-var charge = 0.0 
-var timer = 0    # A Timer that starts counting once the machine if fixed
+
 
 func _ready():
 	add_to_group("Machines")
@@ -41,8 +40,7 @@ func _process(delta: float) -> void:
 		animated_sprite.play("idle_broken")
 		if ! sfx_fixed.is_playing() and played2 == false:
 				played2 = true
-				sfx_broke.play(
-		
+				sfx_broke.play()
 	else: 
 		animated_sprite.play("idle")
 		timer += delta
