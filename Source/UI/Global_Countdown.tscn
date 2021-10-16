@@ -1,0 +1,32 @@
+[gd_scene format=2]
+
+[node name="Global_Counterdown" type="ColorRect"]
+margin_right = 192.0
+margin_bottom = 32.0
+color = Color( 0.0862745, 0.305882, 0.498039, 0.470588 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Counter" type="Label" parent="."]
+margin_left = 44.0
+margin_top = 10.0
+margin_right = 53.0
+margin_bottom = 24.0
+text = "5"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+margin_left = 80.0
+margin_top = 10.0
+margin_right = 89.0
+margin_bottom = 24.0
+text = "Mins remaining"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 16, 16 )

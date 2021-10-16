@@ -14,6 +14,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Source/Actors/Actor.gd"
 }, {
+"base": "Interaction_Object",
+"class": "Energy_Machines",
+"language": "GDScript",
+"path": "res://Source/Non-Solids/Interaction_Objects/Energy_Machines.gd"
+}, {
 "base": "Node2D",
 "class": "Interaction_Object",
 "language": "GDScript",
@@ -31,6 +36,7 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "Actor": "",
+"Energy_Machines": "",
 "Interaction_Object": "",
 "Solid": "",
 "Wall": ""

@@ -21,7 +21,9 @@ onready var intro_sound : AudioStreamMP3 = preload("res://Assets/Sounds/Intro.mp
 onready var song1 : AudioStreamMP3 = preload("res://Assets/Sounds/Song-1.mp3")
 onready var sound_player : AudioStreamPlayer = get_parent().get_node("AudioStreamPlayer")
 
-
+export var initial_break_time = 5
+export var secondary_break_time = 15
+var break_time = initial_break_time
 
 func _ready() -> void:
 	add_to_group("players")
@@ -46,8 +48,12 @@ func _process(delta: float) -> void:
 	move_y(velocity.y * delta, funcref(self, "wall_collision_y"))
 	animate()
 	
+	break_one_machine(break_time)  # break one machine every 15 seconds
+	check_for_broken_machines()
+	check_for_fixed_machines()
+		
 	if (power > 0) and (broken_machines > 0) :
-		var power_used = (power/40) * delta
+		var power_used = (power/60) * delta
 		power_lost += power_used
 		var new_total = infobar.get_power() - power_used
 		infobar.set_power(new_total)
@@ -158,17 +164,66 @@ func _on_YesButton_pressed():
 	get_tree().paused = false
 	
 
-#func _on_TitleMenu_options_menu_request(caller):
-#	pass # Replace with function body.
+func break_one_machine(amount_of_time):
+	var machines = get_tree().get_nodes_in_group("Machines")
+	var the_machine = machines.pop_front()
+	if the_machine != null:
+		if the_machine.timer > amount_of_time:
+			the_machine.break_machine()
+			break_time = secondary_break_time  # We start at 15, but change it to 45 after the first
+	for Node in machines:
+		the_machine = machines.pop_front()
+		if the_machine != null:
+			the_machine.timer = 0
+	
 
-# Not needed any more
-#func _on_TitleMenu_quit_game_request():
-#	quit_game()
-#
-#
-#func _on_TitleMenu_new_game_request():
-#	get_parent().get_node("UI").get_node("TitleMenu").hide()
-#	new_game()
+func check_for_broken_machines():
+	var machines = get_tree().get_nodes_in_group("Broken_Machines")
+	var broken_count =  machines.size()
+	infobar.set_broken_count(broken_count)
+	
+	if broken_count > 0:
+		#print("in check_for_broken_machines - if statement")
+		
+		broken_machines = broken_count
+	for Node in machines:
+		var the_machine = machines.pop_front()
+		if the_machine != null:
+#			
+			infobar.show_status_msg(str(broken_count, " ", get_tree().get_nodes_in_group("Broken_Machines"),
+				get_tree().get_nodes_in_group("Fixed_Machines")))  
+	#var machine_count = get_tree().get_nodes_in_group("Machines").size()
+	#infobar.show_status_msg(str("Machine Count:", machine_count))
+
+func check_for_fixed_machines():
+	var machines = get_tree().get_nodes_in_group("Fixed_Machines")
+	var fixed_count = machines.size()
+	#broken_machines -= fixed_count
+	#infobar.show_status_msg(str("Broken Count: ", broken_machines, "Fixed Count: ",fixed_count) )
+	if fixed_count > 0:
+		var power_addition = power_lost * (fixed_count * 0.5)
+		var current_power = infobar.get_power()
+		infobar.set_power( current_power + power_addition)
+	else:
+		#do nothing
+		pass
+
+	if fixed_count > 0 :
+		for Node in machines:
+			var the_machine = machines.pop_front()
+			if the_machine != null:
+				the_machine.charge = 0
+				the_machine.timer = 0
+				var in_broken = the_machine.is_in_group("Broken_Machines")
+				if in_broken:
+					the_machine.remove_from_group("Broken_Machines")
+					the_machine.remove_from_group("Fixed_Machines")
+					the_machine.add_to_group("Machines")
+			
+			
+			#print("In check_for_fixed_machines")
+			infobar.show_status_msg(str(get_tree().get_nodes_in_group("Broken_Machines"),
+				get_tree().get_nodes_in_group("Fixed_Machines")))              
 
 
 
@@ -178,11 +233,13 @@ func _on_EnergyMachine_machine_fixed():
 	broken_machines -= 1
 	power_lost = 0
 	var current_power = infobar.get_power()
+	print('Broken count after fixed:',broken_machines)
 	infobar.set_power( current_power + power_addition)
 	infobar.set_broken_count(broken_machines)
 
 
 func _on_EnergyMachine_machine_broke():
+	print("broken: ", broken_machines)
 	broken_machines += 1;
 	infobar.set_broken_count(broken_machines)
 	pass # Replace with function body.
