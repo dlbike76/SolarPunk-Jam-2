@@ -16,6 +16,7 @@ export var power := 100.0
 export var mental_energy := 0.0
 export var broken_machines := 0
 var power_lost = 0.0
+var on_ladder := false
 
 onready var intro_sound : AudioStreamMP3 = preload("res://Assets/Sounds/Intro.mp3")
 onready var song1 : AudioStreamMP3 = preload("res://Assets/Sounds/Song-1.mp3")
@@ -68,12 +69,14 @@ func calculate_velocity(direction_x: float, direction_y: float) -> Vector2:
 		out.x = 0
 		out.x = move_toward(out.x, 0, friction * get_process_delta_time())
 	else:
-		if Game.check_ladders_collision(self,Vector2(0,0)) and direction_y != 0 :
+		if Game.check_ladders_collision(self,Vector2(0,0)) and direction_y != 0:
+			on_ladder = true
 			out.y += acceleration * direction_y * get_process_delta_time()
-			#if direction_y == 0 : out.y = move_toward(out.y, 0, friction * get_process_delta_time())
+			#out.y = move_toward(out.y, 0, friction/2 * get_process_delta_time())
 			out.y = clamp(out.y, -65, 65)
-		else:
-			out.y += gravity * get_process_delta_time()
+		if ! Game.check_ladders_collision(self,Vector2(0,0)): on_ladder = false
+		if on_ladder == true and direction_y == 0: out.y = 0
+		if on_ladder == false: out.y += gravity * get_process_delta_time()
 		if (direction_x > 0 and velocity.x >= 0) or (direction_x < 0 and velocity.x <= 0):
 			if abs(velocity.x) < acceleration_up_trigger:
 				out.x += acceleration * direction_x * get_process_delta_time() * acceleration_up_coeficient
@@ -115,7 +118,7 @@ func wall_collision_y():
 	velocity.y = 0
 
 func coll_spring_y():
-	velocity.y = -350
+	velocity.y = -400
 
 
 
