@@ -203,6 +203,7 @@ format = 1
 [editable path="UI/InfoBar/Mental_Energy"]
 [editable path="UI/InfoBar/Broken_Machines"]
 [editable path="UI/GameOverMenu"]
+[editable path="Objects/Chargers/Charger"]
 [editable path="Objects/MovingPlatforms/MovingPlatform"]
 [editable path="Objects/MovingPlatforms/MovingPlatform2"]
 [editable path="Objects/Doors/Door"]

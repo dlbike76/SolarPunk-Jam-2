@@ -4,17 +4,34 @@ onready var infobar := get_parent().get_parent().get_parent().get_node("UI/InfoB
 onready var animated_sprite := $AnimatedSprite
 
 var mental_energy := 0.0
+var max_energy := 30.0   # Max energy per 120 seconds
+var charger_empty = false
+var timer = 0
 
 
 func _ready() -> void:
 	infobar.set_mental_energy(mental_energy)
 
 func _process(delta: float) -> void:
-	if (Game.check_player_collision(self,Vector2(0,0)) and Input.is_action_pressed("action")): 
+	if (Game.check_player_collision(self,Vector2(0,0)) and Input.is_action_pressed("action") and !charger_empty): 
 		animated_sprite.play("charge")
 		
-		var new_m = infobar.get_mental_energy() + 10*delta
+		var energy_recieved = 10 * delta
+		if energy_recieved > max_energy:
+			energy_recieved = max_energy
+			charger_empty = true
+			self.hide()
+		max_energy -= energy_recieved
+		var new_m = infobar.get_mental_energy() + energy_recieved
 		infobar.set_mental_energy(new_m)
 		
 	else: animated_sprite.play("idle")
 	
+	if charger_empty:
+		timer += delta
+	
+	if timer >= 120:
+		timer = 0
+		max_energy = 30.0
+		charger_empty = false
+		self.show()
