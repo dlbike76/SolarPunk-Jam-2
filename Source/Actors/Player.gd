@@ -153,7 +153,12 @@ func is_riding(solid, offset):
 func squish():
 	print ("squished")
 
-
+func try_use_energy(energy_used) -> bool:
+	var enough_energy = mental_energy >= energy_used
+	if enough_energy:
+		mental_energy -= energy_used
+		infobar.set_mental_energy(mental_energy)
+	return enough_energy
 
 
 func _on_GameMenu_options_menu_request(caller):
@@ -220,11 +225,12 @@ func check_for_broken_machines():
 	# We iterate over the group of broken machines and output them to the statusMsg in the UI
 	# We should probably do something here to determine the power loss more accurately
 	
-	for Node in machines:   
-		var the_machine = machines.pop_front()
-		if the_machine != null:
-			infobar.show_status_msg(str(broken_count, " ", get_tree().get_nodes_in_group("Broken_Machines"),
-				get_tree().get_nodes_in_group("Fixed_Machines")))  
+#	for Node in machines:   
+#		var the_machine = machines.pop_front()
+#		if the_machine != null:
+#			pass
+		#	infobar.show_status_msg(str(broken_count, " ", get_tree().get_nodes_in_group("Broken_Machines"),
+		#		get_tree().get_nodes_in_group("Fixed_Machines")))  
 
 
 func check_for_fixed_machines():
@@ -254,8 +260,8 @@ func check_for_fixed_machines():
 			
 			
 			#print("In check_for_fixed_machines")
-			infobar.show_status_msg(str(get_tree().get_nodes_in_group("Broken_Machines"),
-				get_tree().get_nodes_in_group("Fixed_Machines")))              
+		#	infobar.show_status_msg(str(get_tree().get_nodes_in_group("Broken_Machines"),
+		#		get_tree().get_nodes_in_group("Fixed_Machines")))              
 
 
 # These are not used any longer and can be removed
