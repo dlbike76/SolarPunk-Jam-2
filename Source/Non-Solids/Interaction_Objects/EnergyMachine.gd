@@ -42,7 +42,7 @@ func _process(delta: float) -> void:
 				played2 = true
 				sfx_broke.play()
 	else: 
-		animated_sprite.play("idle")
+		animated_sprite.play("harvest")
 		timer += delta
 		
 #	if timer > 30 and animated_sprite.animation=="idle":   #  The machine will start loosing charge again after 30 seconds
