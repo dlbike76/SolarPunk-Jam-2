@@ -25,11 +25,11 @@ position = Vector2( 24, 8 )
 texture = ExtResource( 3 )
 
 [node name="InteractionBox" type="Node2D" parent="."]
-visible = false
 position = Vector2( -16, -16 )
 script = ExtResource( 4 )
 
 [node name="Hitbox" parent="InteractionBox" instance=ExtResource( 1 )]
+visible = false
 pixels = "16 pixel"
-width = 4
+width = 1
 height = 1
