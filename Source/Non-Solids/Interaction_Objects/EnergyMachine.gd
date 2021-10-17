@@ -18,6 +18,7 @@ func _ready():
 
 func _process(delta: float) -> void:
 #	check_machine_status()
+	#breakpoint
 	broken = check_for_broken_status()
 	if charge > 90:
 		if broken:
@@ -27,16 +28,15 @@ func _process(delta: float) -> void:
 			if ! sfx_fixed.is_playing() and played == false:
 				played = true
 				sfx_fixed.play()
-			#self.add_to_group("Machines")
 			
-			#broken = false
 		else:
-			if ! self.is_in_group("Fixed_Machines"):
-				self.add_to_group("Fixed_Machines")
-			
 			animated_sprite.play("fix") 
 			timer += delta
 			charge -= delta * 5
+			if ! self.is_in_group("Fixed_Machines"):
+				self.add_to_group("Fixed_Machines")
+			
+			
 	elif (Game.check_player_collision(self,Vector2(0,0)) and Input.is_action_pressed("action")): 
 		if broken:
 			charge += 30 * delta
@@ -61,6 +61,8 @@ func break_machine():
 	self.add_to_group("Broken_Machines")
 	broken = self.is_in_group("Broken_Machines")
 
+func get_timer() -> float:
+	return self.timer
 
 func check_for_broken_status() -> bool:
 	return self.is_in_group("Broken_Machines")
