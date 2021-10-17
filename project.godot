@@ -45,7 +45,7 @@ _global_script_class_icons={
 [application]
 
 config/name="My Game"
-run/main_scene="res://Source/UI/TitleMenu.tscn"
+run/main_scene="res://Source/UI/Intro.tscn"
 config/icon="res://icon.png"
 
 [autoload]

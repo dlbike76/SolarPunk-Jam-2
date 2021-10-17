@@ -1,7 +1,12 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Source/UI/TitleMenu.gd" type="Script" id=1]
 [ext_resource path="res://Source/UI/GameInfo.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Assets/Sprites/UI/options.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Sprites/UI/quit.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Sprites/UI/Info.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Sprites/UI/New Game.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Sprites/UI/title.png" type="Texture" id=7]
 
 [node name="UI" type="CanvasLayer"]
 
@@ -11,55 +16,81 @@ margin_left = -1.0
 margin_top = 2.0
 margin_right = 488.0
 margin_bottom = 270.0
-color = Color( 0.0862745, 0.305882, 0.498039, 1 )
+color = Color( 1, 1, 1, 0.364706 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="TitleMenu"]
-margin_left = 12.0
-margin_top = 2.0
-margin_right = 481.0
-margin_bottom = 23.0
-text = "SolarPunk Jam Game"
-align = 1
+[node name="Title" type="Sprite" parent="TitleMenu"]
+position = Vector2( 237.838, 26.2377 )
+scale = Vector2( 1.5, 1.5 )
+texture = ExtResource( 7 )
 
-[node name="Menu" type="VBoxContainer" parent="TitleMenu"]
+[node name="Menu" type="Control" parent="TitleMenu"]
 margin_left = 164.363
 margin_top = 84.7725
 margin_right = 322.363
 margin_bottom = 176.772
 __meta__ = {
-"_edit_group_": true,
-"_edit_use_anchors_": false
+"_edit_group_": true
 }
 
 [node name="GameInfo" type="Button" parent="TitleMenu/Menu"]
-margin_right = 158.0
-margin_bottom = 20.0
+margin_left = -50.0
+margin_top = -21.9289
+margin_right = 200.0
+margin_bottom = 28.0711
 text = "Game Info"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Sprite" type="Sprite" parent="TitleMenu/Menu/GameInfo"]
+position = Vector2( 124.573, 23.5448 )
+texture = ExtResource( 5 )
+
 [node name="NewGame" type="Button" parent="TitleMenu/Menu"]
-margin_top = 24.0
-margin_right = 158.0
-margin_bottom = 44.0
+margin_left = -50.0
+margin_top = 28.2757
+margin_right = 200.707
+margin_bottom = 78.2757
 text = "New Game"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="TitleMenu/Menu/NewGame"]
+position = Vector2( 125.701, 25.582 )
+texture = ExtResource( 6 )
 
 [node name="Options" type="Button" parent="TitleMenu/Menu"]
-margin_top = 48.0
-margin_right = 158.0
-margin_bottom = 68.0
+margin_left = -50.0
+margin_top = 78.5513
+margin_right = 200.0
+margin_bottom = 128.551
 text = "Options"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="TitleMenu/Menu/Options"]
+position = Vector2( 126.156, 26.9121 )
+texture = ExtResource( 3 )
 
 [node name="QuitGame" type="Button" parent="TitleMenu/Menu"]
-margin_top = 72.0
-margin_right = 158.0
-margin_bottom = 92.0
+margin_left = -50.0
+margin_top = 130.855
+margin_right = 200.0
+margin_bottom = 180.855
 text = "Quit Game"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="TitleMenu/Menu/QuitGame"]
+position = Vector2( 125.819, 25.7502 )
+texture = ExtResource( 4 )
 
 [node name="GameInfo" parent="." instance=ExtResource( 2 )]
 pause_mode = 2
