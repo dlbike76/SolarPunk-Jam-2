@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Source/UI/GameInfo.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Sprites/Tips.png" type="Texture" id=2]
 
 [node name="GameInfo" type="ColorRect"]
 margin_left = 7.0
@@ -46,11 +47,18 @@ Interface:  Use either the WASD keys for movement, or the arrow keys.  Use the S
 
 "
 
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 239.439, 129.255 )
+texture = ExtResource( 2 )
+
 [node name="Button" type="Button" parent="."]
-margin_left = 356.943
-margin_top = 223.37
-margin_right = 448.943
-margin_bottom = 253.37
+margin_left = 416.102
+margin_top = 70.6929
+margin_right = 466.102
+margin_bottom = 90.6929
 text = "Back"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]

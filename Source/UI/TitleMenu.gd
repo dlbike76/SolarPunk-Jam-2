@@ -2,7 +2,7 @@ extends ColorRect
 
 onready var title_menu = $Menu
 onready var game : PackedScene = preload("res://Source/Levels/Level.tscn")
-onready var intro_sound : AudioStreamMP3 = preload("res://Assets/Sounds/Intro.mp3")
+onready var intro_sound : AudioStreamMP3 = preload("res://Assets/Sounds/Song-3.mp3")
 onready var sound_player : AudioStreamPlayer = get_parent().get_node("AudioStreamPlayer")
 
 
