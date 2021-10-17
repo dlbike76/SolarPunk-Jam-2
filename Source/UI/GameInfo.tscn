@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Source/UI/GameInfo.gd" type="Script" id=1]
-[ext_resource path="res://Assets/Sprites/Tips.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Sprites/UI/Tips.png" type="Texture" id=2]
 
 [node name="GameInfo" type="ColorRect"]
 margin_left = 7.0

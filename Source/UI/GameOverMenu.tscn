@@ -1,32 +1,60 @@
-[gd_scene format=2]
+[gd_scene load_steps=4 format=2]
 
-[node name="GameOverMenu" type="ColorRect"]
+[ext_resource path="res://Assets/Sprites/UI/Game Over.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Sprites/UI/No.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Sprites/UI/Yes.png" type="Texture" id=3]
+
+[node name="GameOverMenu" type="TextureRect"]
 pause_mode = 2
-visible = false
 margin_left = 53.0
 margin_top = 40.0
 margin_right = 209.0
 margin_bottom = 109.0
-color = Color( 0.0862745, 0.305882, 0.498039, 1 )
-
-[node name="Label" type="Label" parent="."]
-margin_left = 12.0
-margin_top = 2.0
-margin_right = 131.0
-margin_bottom = 20.0
-text = "GAME OVER
-Try again?"
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="NoButton" type="Button" parent="."]
-margin_left = 61.0
-margin_top = 42.0
-margin_right = 102.0
-margin_bottom = 62.0
+visible = false
+margin_left = 115.0
+margin_top = 120.0
+margin_right = 156.0
+margin_bottom = 140.0
 text = "No"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="YesButton" type="Button" parent="."]
-margin_left = 5.0
-margin_top = 42.0
-margin_right = 50.0
-margin_bottom = 63.0
+visible = false
+margin_left = 19.0
+margin_top = 120.0
+margin_right = 64.0
+margin_bottom = 141.0
 text = "Yes"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 43, 128 )
+z_index = 1
+texture = ExtResource( 3 )
+
+[node name="Sprite2" type="Sprite" parent="."]
+position = Vector2( 139, 128 )
+z_index = 1
+texture = ExtResource( 2 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+modulate = Color( 1, 1, 1, 0.313726 )
+show_behind_parent = true
+margin_left = -61.0
+margin_top = -48.0
+margin_right = 435.0
+margin_bottom = 240.0
+color = Color( 0.627451, 0.976471, 0.976471, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
