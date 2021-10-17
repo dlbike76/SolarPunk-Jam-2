@@ -4,7 +4,7 @@
 [ext_resource path="res://Source/Non-Solids/Interaction_Objects/Vine_Trigger.gd" type="Script" id=2]
 [ext_resource path="res://Assets/Sprites/Objects/Vine-Sheet.png" type="Texture" id=3]
 [ext_resource path="res://Assets/Sounds/Vines.mp3" type="AudioStream" id=4]
-[ext_resource path="res://Source/Non-Solids/Ladders/Ladder.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Source/Non-Solids/Ladder.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Assets/Sprites/Objects/Long vine-Sheet.png" type="Texture" id=6]
 
 [sub_resource type="AtlasTexture" id=1]
