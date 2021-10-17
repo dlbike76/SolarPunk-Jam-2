@@ -14,9 +14,9 @@ func _init(is_opened = false):
 func _process(delta: float) -> void:
 	if self.charge > 90:
 		if ! self.opened :
-			wall_ungrow()
-			the_player.try_use_energy(15)
-			animated_sprite.play("open")
+			if the_player.try_use_energy(15):
+				wall_ungrow()
+				animated_sprite.play("open")
 
 	elif (Game.check_player_collision(self,Vector2(0,0)) and Input.is_action_pressed("action")): 
 		if the_player.mental_energy >= 15:

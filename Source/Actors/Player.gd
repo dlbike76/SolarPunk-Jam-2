@@ -157,6 +157,7 @@ func try_use_energy(energy_used) -> bool:
 	var enough_energy = mental_energy >= energy_used
 	if enough_energy:
 		mental_energy -= energy_used
+		infobar.set_mental_energy(mental_energy)
 	return enough_energy
 
 
