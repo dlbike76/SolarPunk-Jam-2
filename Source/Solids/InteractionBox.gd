@@ -3,7 +3,7 @@ extends Interaction_Object
 onready var tween := get_parent().get_node("Tween")
 #onready var animated_sprite := $AnimatedSprite
 
-var charge := 0.0
+#var charge := 0.0
 
 signal activated
 
