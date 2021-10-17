@@ -25,8 +25,8 @@ onready var intro_sound : AudioStreamMP3 = preload("res://Assets/Sounds/Intro.mp
 onready var song1 : AudioStreamMP3 = preload("res://Assets/Sounds/Song-1.mp3")
 onready var sound_player : AudioStreamPlayer = get_parent().get_node("Music")
 
-export var initial_break_time = 5
-export var secondary_break_time = 15
+export var initial_break_time = 5.0
+export var secondary_break_time = 15.0
 var break_time = initial_break_time
 
 func _ready() -> void:
@@ -36,6 +36,7 @@ func _ready() -> void:
 	infobar.set_broken_count(broken_machines)
 	sound_player.stream = song1
 	sound_player.play()
+	randomize()
 
 
 # Here we implement the in-game menu
@@ -58,7 +59,8 @@ func _process(delta: float) -> void:
 	power = infobar.get_power()
 	mental_energy = infobar.get_mental_energy()
 	
-	break_one_machine(break_time)  # break one machine every 15 seconds (controlled by secondary_break_time)
+	if broken_machines < 6:
+		break_one_machine(break_time)  # break one machine every 15 seconds (controlled by secondary_break_time)
 	check_for_broken_machines()  # Here we iterate through the group of broken machines
 	check_for_fixed_machines()   # Here we iterate through the group of fixed machines
 	
@@ -185,16 +187,19 @@ func _on_YesButton_pressed():
 	
 
 func break_one_machine(amount_of_time):
+	#breakpoint
 	var machines = get_tree().get_nodes_in_group("Machines")
-	var the_machine = machines.pop_front()
+	machines.shuffle()
+	var the_machine = machines.pop_back()
 	if the_machine != null:
-		if the_machine.timer > amount_of_time:
+		var machine_timer = the_machine.get_timer()
+		if machine_timer > amount_of_time:
 			the_machine.break_machine()
 			break_time = secondary_break_time  # We start at 15, but change it to 45 after the first
-	for Node in machines:
-		the_machine = machines.pop_front()
-		if the_machine != null:
-			the_machine.timer = 0
+			for Node in machines:
+				the_machine = machines.pop_back()
+				if the_machine != null:
+					the_machine.timer = 0
 	
 
 
@@ -227,7 +232,7 @@ func check_for_fixed_machines():
 	var fixed_count = machines.size()
 	#broken_machines -= fixed_count
 	#infobar.show_status_msg(str("Broken Count: ", broken_machines, "Fixed Count: ",fixed_count) )
-	if fixed_count > 0:
+	if fixed_count > 0:              
 		var power_addition = power_lost * (fixed_count * 0.5)
 		var current_power = infobar.get_power()
 		infobar.set_power( current_power + power_addition)
