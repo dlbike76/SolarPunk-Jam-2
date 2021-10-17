@@ -153,7 +153,11 @@ func is_riding(solid, offset):
 func squish():
 	print ("squished")
 
-
+func try_use_energy(energy_used) -> bool:
+	var enough_energy = mental_energy >= energy_used
+	if enough_energy:
+		mental_energy -= energy_used
+	return enough_energy
 
 
 func _on_GameMenu_options_menu_request(caller):
