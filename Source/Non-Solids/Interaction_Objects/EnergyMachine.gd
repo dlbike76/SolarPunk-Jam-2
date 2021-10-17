@@ -22,13 +22,18 @@ func _process(delta: float) -> void:
 	if charge > 90:
 		if broken:
 			animated_sprite.play("fix")
+			if ! self.is_in_group("Fixed_Machines"):
+				self.add_to_group("Fixed_Machines")
 			if ! sfx_fixed.is_playing() and played == false:
 				played = true
 				sfx_fixed.play()
 			#self.add_to_group("Machines")
-			self.add_to_group("Fixed_Machines")
-			broken = false
+			
+			#broken = false
 		else:
+			if ! self.is_in_group("Fixed_Machines"):
+				self.add_to_group("Fixed_Machines")
+			
 			animated_sprite.play("fix") 
 			timer += delta
 			charge -= delta * 5

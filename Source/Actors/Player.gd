@@ -37,10 +37,15 @@ func _ready() -> void:
 	sound_player.stream = song1
 	sound_player.play()
 
+
+# Here we implement the in-game menu
 func _unhandled_input(event):
 	if event.is_action_pressed("ui_cancel"):
 		get_tree().paused = true
 		get_parent().get_node("UI/GameMenu").show()
+
+# As is to be expected, most everything having to do with the game
+# is happening in the _process function
 
 func _process(delta: float) -> void:
 	check_collisions_with_non_walls()
@@ -53,16 +58,21 @@ func _process(delta: float) -> void:
 	power = infobar.get_power()
 	mental_energy = infobar.get_mental_energy()
 	
-	break_one_machine(break_time)  # break one machine every 15 seconds
-	check_for_broken_machines()
-	check_for_fixed_machines()
-		
-	if (power > 0) and (broken_machines > 0) :
-		var power_used = (power/60) * delta
-		power_lost += power_used
-		var new_total = infobar.get_power() - power_used
-		infobar.set_power(new_total)
+	break_one_machine(break_time)  # break one machine every 15 seconds (controlled by secondary_break_time)
+	check_for_broken_machines()  # Here we iterate through the group of broken machines
+	check_for_fixed_machines()   # Here we iterate through the group of fixed machines
 	
+	# Here we get an updated broken count in case a machine has broke in the time 
+	# between the check for broken machines and the check for fixed machines 
+	var broken_count = get_tree().get_nodes_in_group("Broken_Machines").size()
+	
+	if (power > 0) and (broken_count > 0) :     
+		var power_used = (power/60) * delta      # essentially 1 power loss per second
+		power_lost += power_used                 
+		var new_total = infobar.get_power() - power_used
+		infobar.set_power(new_total)             # Adjust the UI to relect the power loss
+	
+	# Here we check if the power has hit or below 0 which triggers a game loss 
 	if infobar.get_power() <= 0 :
 		get_tree().paused = true
 		get_parent().get_node("UI/GameOverMenu").show()
@@ -187,23 +197,30 @@ func break_one_machine(amount_of_time):
 			the_machine.timer = 0
 	
 
-func check_for_broken_machines():
+
+
+# Here we get the count of the # of broken machines based on how
+# many nodes are in the "Broken_Machines" group.
+# We should probably do something here to determine how much power is lost
+
+func check_for_broken_machines():    
 	var machines = get_tree().get_nodes_in_group("Broken_Machines")
-	var broken_count =  machines.size()
-	infobar.set_broken_count(broken_count)
+	var broken_count =  machines.size()     # This is the number of nodes in the "Broken" group
+	infobar.set_broken_count(broken_count)  # We update the UI to show the current broken count
 	
 	if broken_count > 0:
-		#print("in check_for_broken_machines - if statement")
-		
-		broken_machines = broken_count
-	for Node in machines:
+		broken_machines = broken_count  
+	
+	# This code is strictly for debug purposes at the moment
+	# We iterate over the group of broken machines and output them to the statusMsg in the UI
+	# We should probably do something here to determine the power loss more accurately
+	
+	for Node in machines:   
 		var the_machine = machines.pop_front()
 		if the_machine != null:
-#			
 			infobar.show_status_msg(str(broken_count, " ", get_tree().get_nodes_in_group("Broken_Machines"),
 				get_tree().get_nodes_in_group("Fixed_Machines")))  
-	#var machine_count = get_tree().get_nodes_in_group("Machines").size()
-	#infobar.show_status_msg(str("Machine Count:", machine_count))
+
 
 func check_for_fixed_machines():
 	var machines = get_tree().get_nodes_in_group("Fixed_Machines")
@@ -236,20 +253,20 @@ func check_for_fixed_machines():
 				get_tree().get_nodes_in_group("Fixed_Machines")))              
 
 
-
-func _on_EnergyMachine_machine_fixed():
-	# The machine is fixed, so we should stop leaking energy.
-	var power_addition = power_lost * (broken_machines * 0.5)
-	broken_machines -= 1
-	power_lost = 0
-	var current_power = infobar.get_power()
-	print('Broken count after fixed:',broken_machines)
-	infobar.set_power( current_power + power_addition)
-	infobar.set_broken_count(broken_machines)
-
-
-func _on_EnergyMachine_machine_broke():
-	print("broken: ", broken_machines)
-	broken_machines += 1;
-	infobar.set_broken_count(broken_machines)
-	pass # Replace with function body.
+# These are not used any longer and can be removed
+#func _on_EnergyMachine_machine_fixed():
+#	# The machine is fixed, so we should stop leaking energy.
+#	var power_addition = power_lost * (broken_machines * 0.5)
+#	broken_machines -= 1
+#	power_lost = 0
+#	var current_power = infobar.get_power()
+#	print('Broken count after fixed:',broken_machines)
+#	infobar.set_power( current_power + power_addition)
+#	infobar.set_broken_count(broken_machines)
+#
+#
+#func _on_EnergyMachine_machine_broke():
+#	print("broken: ", broken_machines)
+#	broken_machines += 1;
+#	infobar.set_broken_count(broken_machines)
+#	pass # Replace with function body.

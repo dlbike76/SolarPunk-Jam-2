@@ -5,7 +5,7 @@ onready var power_sprite : AnimatedSprite = get_node("Power").get_node("Animated
 onready var mental_energy_sprite : AnimatedSprite = get_node("Mental_Energy").get_node("AnimatedSprite")
 onready var broken_count_sprite : AnimatedSprite = get_node("Broken_Machines").get_node("AnimatedSprite")
 onready var clock_sprite : AnimatedSprite = get_node("Global_Countdown").get_node("Clock")
-onready var clock_back_sprite : AnimatedSprite = get_node("Broken_Machines").get_node("Background")
+onready var clock_back_sprite : AnimatedSprite = get_node("Global_Countdown").get_node("Clock")
 
 
 export var _min = 0.0
