@@ -4,6 +4,9 @@ extends ColorRect
 onready var power_sprite : AnimatedSprite = get_node("Power").get_node("AnimatedSprite")
 onready var mental_energy_sprite : AnimatedSprite = get_node("Mental_Energy").get_node("AnimatedSprite")
 onready var broken_count_sprite : AnimatedSprite = get_node("Broken_Machines").get_node("AnimatedSprite")
+onready var clock_sprite : AnimatedSprite = get_node("Global_Countdown").get_node("Clock")
+onready var clock_back_sprite : AnimatedSprite = get_node("Broken_Machines").get_node("Background")
+
 
 export var _min = 0.0
 export var _max = 100.0
@@ -17,6 +20,7 @@ var global_countdown_amount
 var default_amount = 5.0 * 60
 
 func _ready():
+	clock_sprite.play("tick")
 	global_countdown_amount = default_amount
 	global_counter = 0.0
 
@@ -144,3 +148,17 @@ func animate_broken_counts():
 		broken_count_sprite.set_animation("5")
 	if _broken_count == 6:
 		broken_count_sprite.set_animation("6")
+
+func animate_clock_counts():
+	if _broken_count == 0:
+		broken_count_sprite.set_animation("0")
+	if _broken_count == 1:
+		broken_count_sprite.set_animation("1")
+	if _broken_count == 2:
+		broken_count_sprite.set_animation("2")
+	if _broken_count == 3:
+		broken_count_sprite.set_animation("3")
+	if _broken_count == 4:
+		broken_count_sprite.set_animation("4")
+	if _broken_count == 5:
+		broken_count_sprite.set_animation("5")
