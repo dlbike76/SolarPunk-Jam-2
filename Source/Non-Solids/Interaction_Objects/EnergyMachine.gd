@@ -44,15 +44,17 @@ func _process(delta: float) -> void:
 	elif (broken):
 		animated_sprite.play("idle_broken")
 		if ! sfx_fixed.is_playing() and played2 == false:
-				played2 = true
-				sfx_broke.play()
+			played2 = true
+			sfx_broke.play()
+		self.power_timer += delta         # Amount of time we've been broken and hence loosing power
+		self.power_lost = self.power_timer  * 1   # Loose 1 power per second
+		
 	else: 
 		animated_sprite.play("harvest")
-		timer += delta
+		self.timer += delta
 		
-#	if timer > 30 and animated_sprite.animation=="idle":   #  The machine will start loosing charge again after 30 seconds
-#		charge = 0
-#		broken = true
+	
+	
 	
 func break_machine():
 	timer = 0
@@ -63,6 +65,9 @@ func break_machine():
 
 func get_timer() -> float:
 	return self.timer
+
+func get_power_lost() -> float:
+	return power_lost
 
 func check_for_broken_status() -> bool:
 	return self.is_in_group("Broken_Machines")

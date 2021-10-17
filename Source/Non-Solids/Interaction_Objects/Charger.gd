@@ -6,7 +6,7 @@ onready var animated_sprite := $AnimatedSprite
 var mental_energy := 0.0
 var max_energy := 30.0   # Max energy per 120 seconds
 var charger_empty = false
-var timer = 0
+#var timer = 0
 
 
 func _ready() -> void:
