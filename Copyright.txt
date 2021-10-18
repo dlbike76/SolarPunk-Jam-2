@@ -16,10 +16,14 @@ License: Apache-2.0
    See the License for the specific language governing permissions and
    limitations under the License.
 
-Files:Assets/Sprites/UI/background.png
-Copyright: Eder Muniz
-License:  Not indicated other than free to use (even for commerical works with attribution)
+Files: Assets/Sprites/UI/background.png
+Copyright: 2017, Eder Muniz
+Source: https://edermunizz.itch.io/free-pixel-art-forest
+License:  CC-BY-ND-4.0
 
+This work is licensed under the Creative Commons Attribution-NoDerivatives 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-nd/4.0/ or send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+http://creativecommons.org/licenses/by-nd/4.0/
 
 Files: Assets/*
 Copyright: 2021, Valentino Collazo
