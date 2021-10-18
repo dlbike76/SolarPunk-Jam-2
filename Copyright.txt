@@ -31,13 +31,10 @@ Files: Assets/*
 Copyright: 2021, Valentino Collazo
 License: CC-BY-SA-4.0
 
-Creative Commons Attribution-ShareAlike 4.0 International Public License
+This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. 
+To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/ or send a letter to 
+Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
 
-Licensed under the Creative Commons Attribution-ShareAlike 4.0 International Public License.
-You may obtain a copy of the License at
-
-https://spdx.org/licenses/CC-BY-SA-4.0.html
-
-
+http://creativecommons.org/licenses/by-sa/4.0/
 
 
