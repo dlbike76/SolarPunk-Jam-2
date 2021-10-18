@@ -16,6 +16,11 @@ License: Apache-2.0
    See the License for the specific language governing permissions and
    limitations under the License.
 
+Files:Assets/Sprites/UI/background.png
+Copyright: Eder Muniz
+License:  Not indicated other than free to use (even for commerical works with attribution)
+
+
 Files: Assets/*
 Copyright: 2021, Valentino Collazo
 License: CC-BY-SA-4.0
